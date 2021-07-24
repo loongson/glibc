@@ -1,8 +1,26 @@
 case "$machine" in
-loongarch*)
-	base_machine=loongarch
-	machine=loongarch/lp64
-	;;
+	loongarch*)
+		lasim=`$CC $CFLAGS $CPPFLAGS -E -dM -xc /dev/null | sed -n 's/^#define _LOONGARCH_SIM \(.*\)/\1/p'`
+		case "$lasim" in
+			_ABILP32)
+				loongarch_sim=1
+				;;
+			_ABILP64)
+				loongarch_sim=3
+				;;
+			*)
+				echo "Unable to determine _LOONGARCH_SIM" >&2
+				exit 1
+				;;
+		esac
+
+		$as_echo "#define LOONGARCH_ABILP32 1" >>confdefs.h
+		$as_echo "#define LOONGARCH_ABILP64 3" >>confdefs.h
+		$as_echo "#define LOONGARCH_SIM $loongarch_sim" >>confdefs.h
+
+		base_machine=loongarch
+		machine=loongarch/lp64
+		;;
 esac
 
 #TODO: this file is useless now.
