@@ -1,1 +1,9 @@
 DEFAULT		GLIBC_2.27
+
+%if LOONGARCH_SIM == LOONGARCH_ABILP64
+ld=ld-linux-loongarch64.so.1
+%elif LOONGARCH_SIM == LOONGARCH_ABILP32
+ld=ld-linux-loongarch32.so.1
+%else
+%error cannot determine ABI
+%endif
