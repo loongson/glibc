@@ -1,0 +1,9 @@
+case "$machine" in
+loongarch*)
+	base_machine=loongarch
+	machine=loongarch/lp64
+	;;
+esac
+
+#TODO: this file is useless now.
+#Maybe we can make use of it to get arch info from GCC to set env

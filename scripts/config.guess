@@ -1,6 +1,6 @@
 #! /bin/sh
 # Attempt to guess a canonical system name.
-#   Copyright 1992-2019 Free Software Foundation, Inc.
+#   Copyright 1992-2021 Free Software Foundation, Inc.
 
 timestamp='2019-01-01'
 
@@ -1038,6 +1038,9 @@ EOF
 	echo powerpcle-unknown-linux-"$LIBC"
 	exit ;;
     riscv32:Linux:*:* | riscv64:Linux:*:*)
+	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
+	exit ;;
+    loongarch32:Linux:*:* | loongarch64:Linux:*:*)
 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
 	exit ;;
     s390:Linux:*:* | s390x:Linux:*:*)

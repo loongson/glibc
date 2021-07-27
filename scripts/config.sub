@@ -1,6 +1,6 @@
 #! /bin/sh
 # Configuration validation subroutine script.
-#   Copyright 1992-2019 Free Software Foundation, Inc.
+#   Copyright 1992-2021 Free Software Foundation, Inc.
 
 timestamp='2019-01-01'
 
@@ -1208,6 +1208,7 @@ case $cpu-$vendor in
 			| mipsisa64sr71k | mipsisa64sr71kel \
 			| mipsr5900 | mipsr5900el \
 			| mipstx39 | mipstx39el \
+			| loongarch32 | loongarch64 \
 			| mmix \
 			| mn10200 | mn10300 \
 			| moxie \
