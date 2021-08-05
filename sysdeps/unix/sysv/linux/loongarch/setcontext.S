@@ -35,7 +35,8 @@ LEAF (__setcontext)
 /* rt_sigprocmask (SIG_SETMASK, &ucp->uc_sigmask, NULL, _NSIG8) */
 	li.d	a3, _NSIG8
 	li.d	a2, 0
-	addi.d  a1, a0, UCONTEXT_SIGMASK
+	li.d	a1, UCONTEXT_SIGMASK
+	add.d	a1, a1, a0
 	li.d	a0, SIG_SETMASK
 
 	li.d	a7, SYS_ify (rt_sigprocmask)

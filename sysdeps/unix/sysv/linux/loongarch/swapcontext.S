@@ -58,8 +58,10 @@ LEAF (__swapcontext)
 
 /* rt_sigprocmask (SIG_SETMASK, &ucp->uc_sigmask, &oucp->uc_sigmask, _NSIG8) */
 	li.d	a3, _NSIG8
-	addi.d	a2, a0, UCONTEXT_SIGMASK
-	addi.d  a1, t0, UCONTEXT_SIGMASK
+	li.d	a2, UCONTEXT_SIGMASK
+	add.d	a2, a2, a0
+	li.d	a1, UCONTEXT_SIGMASK
+	add.d	a1, a1, t0
 	li.d	a0, SIG_SETMASK
 
 	li.d	a7, SYS_ify (rt_sigprocmask)
