@@ -19,13 +19,6 @@
 #include <sysdep.h>
 #include <sys/asm.h>
 
-ENTRY (_setjmp)
-  li.w a1,0
-  b __sigsetjmp
-END (_setjmp)
-ENTRY (setjmp)
-  li.w a1,1
-END (setjmp)
 ENTRY (__sigsetjmp)
   REG_S ra, a0, 0*SZREG
   REG_S sp, a0, 1*SZREG
@@ -50,13 +43,11 @@ ENTRY (__sigsetjmp)
   FREG_S $f30, a0, 13*SZREG + 6*SZFREG
   FREG_S $f31, a0, 13*SZREG + 7*SZFREG
 
-#if !IS_IN (libc) && IS_IN(rtld)
+#if IS_IN(rtld)
   li.w v0, 0
   jirl zero,ra,0
 #else
-  b __sigjmp_save
+  b C_SYMBOL_NAME(__sigjmp_save)
 #endif
 END (__sigsetjmp)
-
 hidden_def (__sigsetjmp)
-weak_alias (_setjmp, __GI__setjmp)
