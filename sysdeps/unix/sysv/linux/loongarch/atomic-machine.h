@@ -34,7 +34,9 @@ typedef uintmax_t uatomic_max_t;
 
 #define atomic_full_barrier() __sync_synchronize ()
 
-# define __HAVE_64B_ATOMICS (__loongarch_xlen >= 64)
+#ifdef __LP64__
+# define __HAVE_64B_ATOMICS 1
+#endif
 # define USE_ATOMIC_COMPILER_BUILTINS 1
 # define ATOMIC_EXCHANGE_USES_CAS 0
 

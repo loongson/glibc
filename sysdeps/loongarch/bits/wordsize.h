@@ -16,8 +16,11 @@
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
-#define __loongarch_xlen			64
+#ifdef __LP64__
+# define __WORDSIZE			64
+#else
+# define __WORDSIZE			32
+#endif
 
-#define __WORDSIZE			__loongarch_xlen
 #define __WORDSIZE_TIME64_COMPAT32	0
 

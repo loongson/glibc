@@ -24,7 +24,7 @@
 #include <sysdeps/generic/sysdep.h>
 
 /* Macros to handle different pointer/register sizes for 32/64-bit code.  */
-#ifdef __loongarch64
+#if _LOONGARCH_SIM == _ABILP64
 # define PTRLOG 3
 # define SZREG	8
 # define SZFREG	8
@@ -32,7 +32,7 @@
 # define REG_S st.d
 # define FREG_L fld.d
 # define FREG_S fst.d
-#elif defined __loongarch32
+#elif _LOONGARCH_SIM == _ABILP32
 # define PTRLOG 2
 # define SZREG	4
 # define SZFREG	4
@@ -40,8 +40,7 @@
 # define REG_S st.w
 # define FREG_L fld.w
 # define FREG_S fst.w
-#else
-# error __loongarch_xlen must equal 32 or 64
+# error _LOONGARCH_SIM must equal _ABILP32 or _ABILP64
 #endif
 
 
