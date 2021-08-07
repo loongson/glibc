@@ -40,6 +40,7 @@
 # define REG_S st.w
 # define FREG_L fld.w
 # define FREG_S fst.w
+#else
 # error _LOONGARCH_SIM must equal _ABILP32 or _ABILP64
 #endif
 
