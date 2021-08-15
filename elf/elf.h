@@ -360,7 +360,7 @@ typedef struct
 #define EM_CSKY		252     /* C-SKY */
 #define	EM_LOONGARCH	258	/* LoongArch */
 
-#define EM_NUM		253
+#define EM_NUM		259
 
 /* Old spellings/synonyms.  */
 
