@@ -29,7 +29,7 @@
 /* We use 64bit values for the times.  */
 typedef unsigned long long int hp_timing_t;
 
-/* Read the cp0 count, this maybe inaccurate.  */
+/* Read the stable counter.  */
 #define HP_TIMING_NOW(Var) \
   ({ \
     unsigned long long int _count; \
