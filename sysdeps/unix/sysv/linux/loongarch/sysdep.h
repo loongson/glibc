@@ -120,6 +120,8 @@
 #define HAVE_GETTIMEOFDAY_VSYSCALL "__vdso_gettimeofday"
 #define HAVE_GETCPU_VSYSCALL "__vdso_getcpu"
 
+#define HAVE_CLONE3_WRAPPER 1
+
 #define INTERNAL_SYSCALL(name, nr, args...) \
   internal_syscall##nr (SYS_ify (name), args)
 
