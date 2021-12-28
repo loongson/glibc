@@ -9,6 +9,8 @@ Version 2.35
 
 Major new features:
 
+* Add LoongArch Port.  Loongson Ltd.
+
 * Unicode 14.0.0 Support: Character encoding, character type info, and
   transliteration tables are all updated to Unicode 14.0.0, using
   generator scripts contributed by Mike FABIAN (Red Hat).
