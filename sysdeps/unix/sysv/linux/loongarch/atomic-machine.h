@@ -19,24 +19,9 @@
 #ifndef _LINUX_LOONGARCH_BITS_ATOMIC_H
 #define _LINUX_LOONGARCH_BITS_ATOMIC_H 1
 
-#include <stdint.h>
-
-typedef int32_t atomic32_t;
-typedef uint32_t uatomic32_t;
-
-typedef int64_t atomic64_t;
-typedef uint64_t uatomic64_t;
-
-typedef intptr_t atomicptr_t;
-typedef uintptr_t uatomicptr_t;
-typedef intmax_t atomic_max_t;
-typedef uintmax_t uatomic_max_t;
-
 #define atomic_full_barrier() __sync_synchronize ()
 
-#ifdef __LP64__
-#define __HAVE_64B_ATOMICS 1
-#endif
+#define __HAVE_64B_ATOMICS (__loongarch_grlen >=64)
 #define USE_ATOMIC_COMPILER_BUILTINS 1
 #define ATOMIC_EXCHANGE_USES_CAS 0
 
