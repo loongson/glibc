@@ -5,8 +5,6 @@ GLIBC_PROVIDES dnl See aclocal.m4 in the top level source directory.
 arch_minimum_kernel=5.15.0
 
 libc_cv_loongarch_int_abi=no
-AC_EGREP_CPP(4 4 4, [__SIZEOF_INT__ __SIZEOF_LONG__ __SIZEOF_POINTER__
-  ], libc_cv_loongarch_int_abi=ilp32)
 AC_EGREP_CPP(4 8 8, [__SIZEOF_INT__ __SIZEOF_LONG__ __SIZEOF_POINTER__
   ], libc_cv_loongarch_int_abi=lp64)
 if test $libc_cv_loongarch_int_abi = no; then
@@ -16,9 +14,6 @@ fi
 LIBC_CONFIG_VAR([default-abi], [$libc_cv_loongarch_int_abi])
 
 case $libc_cv_loongarch_int_abi in
-ilp32)
-  LIBC_SLIBDIR_RTLDDIR([lib32], [lib32])
-  ;;
 lp64)
   LIBC_SLIBDIR_RTLDDIR([lib64], [lib64])
   ;;
