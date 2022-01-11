@@ -33,7 +33,7 @@ typedef unsigned long long int hp_timing_t;
 #define HP_TIMING_NOW(Var) \
   ({ \
     unsigned long long int _count; \
-    asm volatile("rdtime.d\t%0,$r0" : "=r"(_count)); \
+    asm volatile ("rdtime.d\t%0,$r0" : "=r" (_count)); \
     (Var) = _count; \
   })
 
