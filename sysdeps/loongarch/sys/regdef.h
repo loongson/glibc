@@ -20,7 +20,6 @@
 #ifndef _SYS_REGDEF_H
 #define _SYS_REGDEF_H
 
-#ifdef __loongarch_lp64
 #define zero $r0
 #define ra $r1
 #define tp $r2
@@ -90,9 +89,5 @@
 #define fs5 $f29
 #define fs6 $f30
 #define fs7 $f31
-
-#else
-#error "32bit LoongArch systems are not supported"
-#endif
 
 #endif /* _SYS_REGDEF_H */
