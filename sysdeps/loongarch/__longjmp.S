@@ -46,7 +46,7 @@ ENTRY (__longjmp)
 #endif
 
 	sltui	a0,a1,1
-	add.d	a0, a0, a1	 # a0 = (a1 == 0) ? 1 : a1
+	ADD	a0, a0, a1	 # a0 = (a1 == 0) ? 1 : a1
 	jirl	zero,ra,0
 
 END (__longjmp)

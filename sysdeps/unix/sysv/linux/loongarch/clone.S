@@ -33,19 +33,15 @@
 ENTRY (__clone)
 
 	/* Align stack to 16 or 8 bytes per the ABI.  */
-#ifdef __loongarch_lp64
-	bstrins.d	a1, zero, 3, 0
-#else
-#error "32bit LoongArch systems are not supported"
-#endif
+	BSTRINS		a1, zero, 3, 0
 
 	/* Sanity check arguments.  */
 	beqz		a0, L (invalid) /* No NULL function pointers.  */
 	beqz		a1, L (invalid) /* No NULL stack pointers.  */
 
-	addi.d 		a1, a1, -16 /* Reserve argument save space.  */
-	st.d		a0, a1, 0   /* Save function pointer.  */
-	st.d		a3, a1, SZREG   /* Save argument pointer.  */
+	ADDI 		a1, a1, -16 /* Reserve argument save space.  */
+	REG_S		a0, a1, 0   /* Save function pointer.  */
+	REG_S		a3, a1, SZREG   /* Save argument pointer.  */
 
 	/* The syscall expects the args to be in different slots.  */
 	or		a0, a2, zero
@@ -54,7 +50,7 @@ ENTRY (__clone)
 	or		a4, a5, zero
 
 	/* Do the system call.  */
-	li.d		a7,__NR_clone
+	LI		a7,__NR_clone
 	syscall		0
 
 	blt		a0, zero ,L (error)
@@ -64,7 +60,7 @@ ENTRY (__clone)
 	ret
 
 L (invalid):
-	li.d		a0, -EINVAL
+	LI		a0, -EINVAL
 
 	/* Something bad happened -- no child created.  */
 L (error):
@@ -84,14 +80,14 @@ L (thread_start):
 	cfi_undefined (1)
 
 	/* Restore the arg for user's function.  */
-	ld.d		a1, sp, 0   /* Function pointer.  */
-	ld.d		a0, sp, SZREG   /* Argument pointer.  */
+	REG_L		a1, sp, 0   /* Function pointer.  */
+	REG_L		a0, sp, SZREG   /* Argument pointer.  */
 
 	/* Call the user's function.  */
 	jirl		ra, a1, 0
 
 	/* Call exit with the function's return value.  */
-	li.d		a7, __NR_exit
+	LI		a7, __NR_exit
 	syscall		0
 
 	END (__thread_start)

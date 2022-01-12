@@ -37,7 +37,7 @@ ENTRY (__clone3)
 	beqz		a2, L (invalid)	/* No NULL function pointer.  */
 
 	/* Do the system call.  */
-	li.d		a7, __NR_clone3
+	LI		a7, __NR_clone3
 	syscall		0
 
 	blt		a0, zero ,L (error)
@@ -47,7 +47,7 @@ ENTRY (__clone3)
 	ret
 
 L (invalid):
-	li.d		a0, -EINVAL
+	LI		a0, -EINVAL
 
 	/* Something bad happened -- no child created.  */
 L (error):
@@ -67,18 +67,14 @@ L (thread_start3):
 	cfi_undefined (1)
 
 	/* Align stack to 16 or 8 bytes per the ABI.  */
-#ifdef __loongarch_lp64
-	bstrins.d	sp, zero, 3, 0
-#else
-#error "32bit LoongArch systems are not supported"
-#endif
+	BSTRINS		sp, zero, 3, 0
 
 	/* Set up arguments for the function call.  */
 	move		a0, a3		/* Argument.  */
 	jirl		ra, a2, 0	/* Call function.  */
 
 	/* Call exit with the function's return value.  */
-	li.d		a7, __NR_exit
+	LI		a7, __NR_exit
 	syscall		0
 
 	END (__thread_start3)

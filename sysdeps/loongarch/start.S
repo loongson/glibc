@@ -47,15 +47,12 @@ ENTRY (ENTRY_POINT)
 /* We must get symbol main through GOT table, since main may not be local.
    For instance: googletest defines main in dynamic library.  */
 	la.got		a0, t0, main
-#ifdef __loongarch_lp64
-	ld.d		a1, sp, 0
-	addi.d		a2, sp, SZREG
-#else
-#error "32bit LoongArch systems are not supported"
-#endif
+	REG_L		a1, sp, 0
+	ADDI		a2, sp, SZREG
+
 	/* Adjust $sp for 16-aligned */
-	srli.d		sp, sp, 4
-	slli.d		sp, sp, 4
+	SRLI		sp, sp, 4
+	SLLI		sp, sp, 4
 
 	move		a3, zero /* used to be init */
 	move		a4, zero /* used to be fini */

@@ -18,12 +18,8 @@
 
 #include <sysdeps/generic/ldconfig.h>
 
-#ifdef __loongarch_lp64
 #define SYSDEP_KNOWN_INTERPRETER_NAMES \
   { "/lib64/ld-linux-loongarch-lp64d.so.1", FLAG_ELF_LIBC6 },
-#else
-#error cannot determine ABI
-#endif
 
 #define SYSDEP_KNOWN_LIBRARY_NAMES	\
   { "libc.so.6", FLAG_ELF_LIBC6 },	\

@@ -23,17 +23,19 @@
 #include <sysdeps/generic/sysdep.h>
 
 /* Macros to handle different pointer/register sizes for 32/64-bit code.  */
-#ifdef __loongarch_lp64
 #define PTRLOG 3
 #define SZREG 8
 #define SZFREG 8
 #define REG_L ld.d
 #define REG_S st.d
+#define SRLI srli.d
+#define SLLI slli.d
+#define ADDI addi.d
+#define ADD  add.d
+#define BSTRINS  bstrins.d
+#define LI  li.d
 #define FREG_L fld.d
 #define FREG_S fst.d
-#else
-#error "32bit LoongArch systems are not supported"
-#endif
 
 /* Declare leaf routine.  */
 #define LEAF(symbol) \
