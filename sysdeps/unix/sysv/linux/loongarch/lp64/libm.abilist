@@ -17,8 +17,6 @@ GLIBC_2.35 __signbit F
 GLIBC_2.35 __signbitf F
 GLIBC_2.35 __signbitl F
 GLIBC_2.35 __signgam D 0x4
-GLIBC_2.35 __sqrt_finite F
-GLIBC_2.35 __sqrtf_finite F
 GLIBC_2.35 __sqrtl_finite F
 GLIBC_2.35 acos F
 GLIBC_2.35 acosf F
