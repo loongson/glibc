@@ -288,7 +288,8 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 
     case R_LARCH_IRELATIVE:
       value = map->l_addr + reloc->r_addend;
-      value = ((ElfW (Addr) (*) (void)) value) ();
+      if (__glibc_likely (!skip_ifunc))
+	value = ((ElfW (Addr) (*) (void)) value) ();
       *addr_field = value;
       break;
 
