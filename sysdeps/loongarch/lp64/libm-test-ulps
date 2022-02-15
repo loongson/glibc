@@ -832,7 +832,7 @@ float: 3
 ldouble: 3
 
 Function: Real part of "ctan":
-double: 1
+double: 2
 float: 1
 ldouble: 3
 
@@ -1290,6 +1290,7 @@ float: 3
 ldouble: 4
 
 Function: "tan":
+double: 1
 float: 1
 ldouble: 1
 
