@@ -27,8 +27,6 @@
 #include <bits/types/sigset_t.h>
 #include <bits/types/stack_t.h>
 
-typedef unsigned long int __loongarch_mc_gp_state[32];
-
 #ifdef __USE_MISC
 #define LARCH_NGREG 32
 
@@ -40,41 +38,14 @@ typedef unsigned long int __loongarch_mc_gp_state[32];
 #define LARCH_REG_S2 25
 #define LARCH_REG_NARGS 8
 
-typedef unsigned long int greg_t;
-
-/* Container for all general registers.  */
-typedef __loongarch_mc_gp_state gregset_t;
-
-/* Container for floating-point state.  */
-typedef union __loongarch_mc_fp_state fpregset_t;
 #endif
-
-union __loongarch_mc_fp_state
-{
-  unsigned int __val32[256 / 32];
-  unsigned long long __val64[256 / 64];
-};
 
 typedef struct mcontext_t
 {
   unsigned long long __pc;
   unsigned long long __gregs[32];
   unsigned int __flags;
-
-  unsigned int __fcsr;
-  unsigned int __vcsr;
-  unsigned long long __fcc;
-
-  /* For Binary Translation */
-  unsigned long long __scr[4];
-  unsigned int __eflags;
-
-  union __loongarch_mc_fp_state __fpregs[32] __attribute__ ((__aligned__ (32)));
-
-  /* Reserved for future scalable vectors */
-  unsigned int __svsize;
-  unsigned long long __svregs[0] __attribute__((__aligned__(16)));
-
+  unsigned long long __extcontext[0] __attribute__((__aligned__(16)));
 } mcontext_t;
 
 /* Userlevel context.  */

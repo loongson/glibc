@@ -23,32 +23,12 @@
 # error "Never use <bits/sigcontext.h> directly; include <signal.h> instead."
 #endif
 
-#define FPU_REG_WIDTH 256
-#define FPU_ALIGN __attribute__ ((aligned (32)))
-
 struct sigcontext
 {
   unsigned long long sc_pc;
   unsigned long long sc_regs[32];
   unsigned int sc_flags;
-
-  unsigned int sc_fcsr;
-  unsigned int sc_vcsr;
-  unsigned long long sc_fcc;
-
-  /* For Binary Translation */
-  unsigned long long sc_scr[4];
-  unsigned int sc_eflags;
-
-  union
-  {
-    unsigned int val32[FPU_REG_WIDTH / 32];
-    unsigned long long val64[FPU_REG_WIDTH / 64];
-  } sc_fpregs[32] FPU_ALIGN;
-
-  /* Reserved for future scalable vectors */
-  unsigned int sc_svsize;
-  unsigned long long sc_svregs[0] __attribute__((__aligned__(16)));
+  unsigned long long sc_extcontext[0] __attribute__((__aligned__(16)));
 };
 
 #endif /* _BITS_SIGCONTEXT_H */

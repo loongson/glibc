@@ -21,14 +21,7 @@
 
 #include <sysdep.h>
 #include <sys/asm.h>
-
 #include "ucontext_i.h"
-
-#define SAVE_FP_REG(name, num, base) \
-  FREG_S name, base, ((num) *SZFREG + MCONTEXT_FPREGS)
-
-#define RESTORE_FP_REG(name, num, base) \
-  FREG_L name, base, ((num) *SZFREG + MCONTEXT_FPREGS)
 
 #define SAVE_INT_REG(name, num, base) \
   REG_S name, base, ((num) *SZREG + MCONTEXT_GREGS)

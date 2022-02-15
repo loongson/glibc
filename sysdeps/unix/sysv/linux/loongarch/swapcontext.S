@@ -42,20 +42,6 @@ LEAF (__swapcontext)
 	SAVE_INT_REG (s8,  31, a0)
 
 	st.d		ra, a0, MCONTEXT_PC
-#ifndef __loongarch_soft_float
-	movfcsr2gr	a1, $r0
-
-	SAVE_FP_REG (fs0,  24, a0)
-	SAVE_FP_REG (fs1,  25, a0)
-	SAVE_FP_REG (fs2,  26, a0)
-	SAVE_FP_REG (fs3,  27, a0)
-	SAVE_FP_REG (fs4,  28, a0)
-	SAVE_FP_REG (fs5,  29, a0)
-	SAVE_FP_REG (fs6,  30, a0)
-	SAVE_FP_REG (fs7,  31, a0)
-
-	st.w		a1, a0, MCONTEXT_FCSR
-#endif /* __loongarch_soft_float */
 
 /* rt_sigprocmask (SIG_SETMASK, &ucp->uc_sigmask, &oucp->uc_sigmask, _NSIG8) */
 	li.d		a3, _NSIG8
@@ -70,21 +56,7 @@ LEAF (__swapcontext)
 
 	blt		a0, zero, 99f
 
-#ifndef __loongarch_soft_float
 	ld.d		t0, sp, 0		/* Load a1 to t0 */
-	ld.w		t1, t0, MCONTEXT_FCSR
-
-	RESTORE_FP_REG (fs0,  24, t0)
-	RESTORE_FP_REG (fs1,  25, t0)
-	RESTORE_FP_REG (fs2,  26, t0)
-	RESTORE_FP_REG (fs3,  27, t0)
-	RESTORE_FP_REG (fs4,  28, t0)
-	RESTORE_FP_REG (fs5,  29, t0)
-	RESTORE_FP_REG (fs6,  30, t0)
-	RESTORE_FP_REG (fs7,  31, t0)
-
-	movgr2fcsr	$r0, t1
-#endif /* __loongarch_soft_float */
 
 /* Note the contents of argument registers will be random
    unless makecontext() has been called.  */

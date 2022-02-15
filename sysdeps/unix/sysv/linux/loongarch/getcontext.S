@@ -38,21 +38,6 @@ LEAF (__getcontext)
 	SAVE_INT_REG (s8,  31, a0)
 	st.d		ra, a0, MCONTEXT_PC
 
-#ifndef __loongarch_soft_float
-	movfcsr2gr	a1, $r0
-
-	SAVE_FP_REG (fs0,  24, a0)
-	SAVE_FP_REG (fs1,  25, a0)
-	SAVE_FP_REG (fs2,  26, a0)
-	SAVE_FP_REG (fs3,  27, a0)
-	SAVE_FP_REG (fs4,  28, a0)
-	SAVE_FP_REG (fs5,  29, a0)
-	SAVE_FP_REG (fs6,  30, a0)
-	SAVE_FP_REG (fs7,  31, a0)
-
-	st.w		a1, a0, MCONTEXT_FCSR
-#endif /* __loongarch_soft_float */
-
 /* rt_sigprocmask (SIG_BLOCK, NULL, &ucp->uc_sigmask, _NSIG8) */
 	li.d		a3, _NSIG8
 	li.d		a2, UCONTEXT_SIGMASK

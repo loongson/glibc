@@ -26,8 +26,6 @@ STACK_SIZE			stack (ss_size)
 STACK_FLAGS			stack (ss_flags)
 
 MCONTEXT_PC			mcontext (__pc)
-MCONTEXT_FCSR 			mcontext (__fcsr)
 MCONTEXT_GREGS			mcontext (__gregs)
-MCONTEXT_FPREGS			mcontext (__fpregs)
 
 UCONTEXT_SIZE			sizeof (ucontext_t)

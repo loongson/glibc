@@ -48,21 +48,6 @@ LEAF (__setcontext)
 	ld.d		t0, sp, 0	/* Load ucp to t0 */
 	cfi_def_cfa (12, 0)
 
-#ifndef __loongarch_soft_float
-	ld.w		t1, t0, MCONTEXT_FCSR
-
-	RESTORE_FP_REG(fs0,  24, t0)
-	RESTORE_FP_REG(fs1,  25, t0)
-	RESTORE_FP_REG(fs2,  26, t0)
-	RESTORE_FP_REG(fs3,  27, t0)
-	RESTORE_FP_REG(fs4,  28, t0)
-	RESTORE_FP_REG(fs5,  29, t0)
-	RESTORE_FP_REG(fs6,  30, t0)
-	RESTORE_FP_REG(fs7,  31, t0)
-
-	movgr2fcsr	$r0, t1
-#endif /* __loongarch_soft_float */
-
 /* Note the contents of argument registers will be random
    unless makecontext() has been called.  */
 	RESTORE_INT_REG(ra,   1, t0)
