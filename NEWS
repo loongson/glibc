@@ -35,6 +35,15 @@ Version 2.35
 
 Major new features:
 
+* Support for LoongArch running on Linux has been added.  This port requires
+  as least binutils 2.38, GCC 12, and Linux 5.16.  Currently only hard-float
+  ABI is supported:
+
+    - loongarch64-linux-gnu
+
+  The LoongArch ABI is 64-bit little-endian and uses 64-bit time (y2038 safe) and
+  64-bit file offsets (LFS default).
+
 * Unicode 14.0.0 Support: Character encoding, character type info, and
   transliteration tables are all updated to Unicode 14.0.0, using
   generator scripts contributed by Mike FABIAN (Red Hat).
