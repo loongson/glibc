@@ -1,0 +1,47 @@
+case "$machine" in
+loongarch*)
+
+    grlen=`$CC $CFLAGS $CPPFLAGS -E -dM -xc /dev/null | sed -n 's/^#define __loongarch_grlen \(.*\)/\1/p'`
+    float_abi=`$CC $CFLAGS $CPPFLAGS -E -dM -xc /dev/null | sed -n 's/^#define __loongarch_\(soft\|single\|double\)_float.*/\1/p'`
+
+    with_fp_cond="!defined __loongarch_soft_float"
+
+    case "$float_abi" in
+    soft)
+	abi_flen=0
+	echo "loongarch does not yet support soft floating-point  ABI!!" >&2
+	exit 1
+	;;
+    single)
+	echo "glibc does not yet support the single floating-point ABI" >&2
+	exit 1
+	;;
+    double)
+	abi_flen=64
+	;;
+    *)
+	echo "Unable to determine floating-point ABI" >&2
+	exit 1
+	;;
+    esac
+
+    case "$grlen" in
+    32)
+	echo "loongarch does not yet support ilp32 ABI!!" >&2
+	;;
+    64)
+	machine=loongarch/lp64
+	;;
+    *)
+	echo "Unable to determine GRLEN" >&2
+	exit 1
+	;;
+    esac
+
+    $as_echo "#define LOONGARCH_ABI_GRLEN $grlen" >>confdefs.h
+    $as_echo "#define LOONGARCH_ABI_FRLEN $abi_flen" >>confdefs.h
+
+    base_machine=loongarch
+    ;;
+esac
+
