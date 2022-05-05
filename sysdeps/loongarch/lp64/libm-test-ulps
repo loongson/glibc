@@ -87,7 +87,7 @@ float: 1
 ldouble: 1
 
 Function: "atan2":
-float: 1
+float: 2
 ldouble: 2
 
 Function: "atan2_downward":
@@ -102,7 +102,7 @@ ldouble: 3
 
 Function: "atan2_upward":
 double: 1
-float: 1
+float: 2
 ldouble: 2
 
 Function: "atan_downward":
@@ -193,7 +193,7 @@ ldouble: 3
 
 Function: Imaginary part of "cacos_upward":
 double: 5
-float: 5
+float: 7
 ldouble: 7
 
 Function: Real part of "cacosh":
@@ -252,7 +252,7 @@ ldouble: 3
 
 Function: "carg_upward":
 double: 1
-float: 1
+float: 2
 ldouble: 2
 
 Function: Real part of "casin":
@@ -292,7 +292,7 @@ ldouble: 3
 
 Function: Imaginary part of "casin_upward":
 double: 5
-float: 5
+float: 7
 ldouble: 7
 
 Function: Real part of "casinh":
@@ -327,7 +327,7 @@ ldouble: 3
 
 Function: Real part of "casinh_upward":
 double: 5
-float: 5
+float: 7
 ldouble: 7
 
 Function: Imaginary part of "casinh_upward":
@@ -853,7 +853,7 @@ ldouble: 5
 
 Function: Real part of "ctan_towardzero":
 double: 5
-float: 2
+float: 3
 ldouble: 4
 
 Function: Imaginary part of "ctan_towardzero":
@@ -878,7 +878,7 @@ ldouble: 3
 
 Function: Imaginary part of "ctanh":
 double: 2
-float: 1
+float: 2
 ldouble: 3
 
 Function: Real part of "ctanh_downward":
@@ -898,7 +898,7 @@ ldouble: 5
 
 Function: Imaginary part of "ctanh_towardzero":
 double: 5
-float: 2
+float: 3
 ldouble: 3
 
 Function: Real part of "ctanh_upward":
@@ -932,23 +932,23 @@ float: 1
 ldouble: 2
 
 Function: "erfc":
-double: 2
-float: 2
+double: 5
+float: 3
 ldouble: 4
 
 Function: "erfc_downward":
-double: 4
-float: 4
+double: 5
+float: 6
 ldouble: 5
 
 Function: "erfc_towardzero":
 double: 3
-float: 3
+float: 4
 ldouble: 4
 
 Function: "erfc_upward":
-double: 4
-float: 4
+double: 5
+float: 6
 ldouble: 5
 
 Function: "exp":
@@ -1025,23 +1025,23 @@ float: 1
 ldouble: 3
 
 Function: "gamma":
-double: 3
-float: 3
+double: 4
+float: 7
 ldouble: 5
 
 Function: "gamma_downward":
-double: 4
-float: 4
+double: 5
+float: 7
 ldouble: 8
 
 Function: "gamma_towardzero":
-double: 4
-float: 3
+double: 5
+float: 6
 ldouble: 5
 
 Function: "gamma_upward":
-double: 4
-float: 5
+double: 5
+float: 6
 ldouble: 8
 
 Function: "hypot":
@@ -1086,7 +1086,7 @@ float: 9
 ldouble: 4
 
 Function: "j1_downward":
-double: 3
+double: 5
 float: 8
 ldouble: 4
 
@@ -1106,12 +1106,12 @@ float: 4
 ldouble: 7
 
 Function: "jn_downward":
-double: 4
+double: 5
 float: 5
 ldouble: 8
 
 Function: "jn_towardzero":
-double: 4
+double: 5
 float: 5
 ldouble: 8
 
@@ -1121,23 +1121,23 @@ float: 4
 ldouble: 7
 
 Function: "lgamma":
-double: 3
-float: 3
+double: 4
+float: 7
 ldouble: 5
 
 Function: "lgamma_downward":
-double: 4
-float: 4
+double: 5
+float: 7
 ldouble: 8
 
 Function: "lgamma_towardzero":
-double: 4
-float: 3
+double: 5
+float: 6
 ldouble: 5
 
 Function: "lgamma_upward":
-double: 4
-float: 5
+double: 5
+float: 6
 ldouble: 8
 
 Function: "log":
@@ -1170,7 +1170,7 @@ float: 1
 ldouble: 3
 
 Function: "log1p_downward":
-double: 1
+double: 2
 float: 2
 ldouble: 3
 
@@ -1350,23 +1350,23 @@ float: 8
 ldouble: 4
 
 Function: "y0":
-double: 2
-float: 8
+double: 3
+float: 9
 ldouble: 3
 
 Function: "y0_downward":
 double: 3
-float: 8
+float: 9
 ldouble: 7
 
 Function: "y0_towardzero":
-double: 3
-float: 8
+double: 4
+float: 9
 ldouble: 3
 
 Function: "y0_upward":
-double: 2
-float: 8
+double: 3
+float: 9
 ldouble: 4
 
 Function: "y1":
@@ -1376,7 +1376,7 @@ ldouble: 5
 
 Function: "y1_downward":
 double: 6
-float: 8
+float: 9
 ldouble: 5
 
 Function: "y1_towardzero":
@@ -1385,7 +1385,7 @@ float: 9
 ldouble: 2
 
 Function: "y1_upward":
-double: 6
+double: 7
 float: 9
 ldouble: 5
 
