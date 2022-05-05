@@ -142,17 +142,6 @@ __SIZEOF_INT__ __SIZEOF_LONG__ __SIZEOF_POINTER__
 
 _ACEOF
 if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
-  $EGREP "4 4 4" >/dev/null 2>&1; then :
-  libc_cv_loongarch_int_abi=lp32
-fi
-rm -f conftest*
-
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-__SIZEOF_INT__ __SIZEOF_LONG__ __SIZEOF_POINTER__
-
-_ACEOF
-if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
   $EGREP "4 8 8" >/dev/null 2>&1; then :
   libc_cv_loongarch_int_abi=lp64
 fi
@@ -166,20 +155,6 @@ config_vars="$config_vars
 default-abi = $libc_cv_loongarch_int_abi"
 
 case $libc_cv_loongarch_int_abi in
-lp32)
-  test -n "$libc_cv_slibdir" ||
-case "$prefix" in
-/usr | /usr/)
-  libc_cv_slibdir='/lib32'
-  libc_cv_rtlddir='/lib32'
-  if test "$libdir" = '${exec_prefix}/lib'; then
-    libdir='${exec_prefix}/lib32';
-    # Locale data can be shared between 32-bit and 64-bit libraries.
-    libc_cv_complocaledir='${exec_prefix}/lib/locale'
-  fi
-  ;;
-esac
-  ;;
 lp64)
   test -n "$libc_cv_slibdir" ||
 case "$prefix" in
