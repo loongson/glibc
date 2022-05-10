@@ -185,9 +185,9 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
     value = SYMBOL_ADDRESS (sym_map, sym, true) + reloc->r_addend;
 
   if (sym != NULL
-      && __builtin_expect (ELFW (ST_TYPE) (sym->st_info) == STT_GNU_IFUNC, 0)
-      && __builtin_expect (sym->st_shndx != SHN_UNDEF, 1)
-      && __builtin_expect (!skip_ifunc, 1))
+      && __glibc_unlikely (ELFW (ST_TYPE) (sym->st_info) == STT_GNU_IFUNC)
+      && __glibc_likely (sym->st_shndx != SHN_UNDEF)
+      && __glibc_likely (!skip_ifunc))
     value = ((ElfW (Addr) (*) (int)) value) (GLRO (dl_hwcap));
 
   switch (r_type)

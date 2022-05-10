@@ -92,7 +92,7 @@
 #define FP_HANDLE_EXCEPTIONS \
   do \
     { \
-      if (__builtin_expect (_fex, 0)) \
+      if (__glibc_unlikely (_fex)) \
 	_FPU_SETCW (_fcw | _fex | (_fex << 8)); \
     } \
   while (0)
