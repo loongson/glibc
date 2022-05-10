@@ -60,7 +60,7 @@
 #define ELF_MACHINE_NO_RELA 0
 
 /* Return nonzero iff ELF header is compatible with the running host.  */
-static inline int __attribute_used__
+static inline int
 elf_machine_matches_host (const ElfW (Ehdr) * ehdr)
 {
   /* We can only run LoongArch binaries.  */
