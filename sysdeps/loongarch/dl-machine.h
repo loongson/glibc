@@ -216,36 +216,25 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 
     case R_LARCH_COPY:
       {
-	if (__glibc_unlikely (sym == NULL))
-	  /* This can happen in trace mode if an object could not be
-	     found.  */
-	  break;
-
-	/* Handle TLS copy relocations.  */
-	if (__glibc_unlikely (ELFW (ST_TYPE) (sym->st_info) == STT_TLS))
+	  if (sym == NULL)
+	    /* This can happen in trace mode if an object could not be
+	       found.  */
+	    break;
+	  if (__glibc_unlikely (sym->st_size > refsym->st_size)
+	      || (__glibc_unlikely (sym->st_size < refsym->st_size)
+	        && GLRO(dl_verbose)))
 	  {
-	    /* There's nothing to do if the symbol is in .tbss.  */
-	    if (__glibc_likely (sym->st_value
-				>= sym_map->l_tls_initimage_size))
-	      break;
-	    value += (ElfW (Addr)) sym_map->l_tls_initimage - sym_map->l_addr;
-	  }
+	    const char *strtab;
 
-	size_t size = sym->st_size;
-	if (__glibc_unlikely (sym->st_size != refsym->st_size))
-	  {
-	    const char *strtab = (const void *) D_PTR (map, l_info[DT_STRTAB]);
-	    if (sym->st_size > refsym->st_size)
-	      size = refsym->st_size;
-	    if (sym->st_size > refsym->st_size || GLRO (dl_verbose))
-	      _dl_error_printf ("\
-  %s: Symbol `%s' has different size in shared object, consider re-linking\n",
-				rtld_progname ?: "<program name unknown>",
-				strtab + refsym->st_name);
+	    strtab = (const char *) D_PTR (map, l_info[DT_STRTAB]);
+	    _dl_error_printf ("\
+%s: Symbol `%s' has different size in shared object, consider re-linking\n",
+	    rtld_progname ?: "<program name unknown>",
+	    strtab + refsym->st_name);
 	  }
-
-	memcpy (reloc_addr, (void *) value, size);
-	break;
+	  memcpy (reloc_addr, (void *) value,
+		  MIN (sym->st_size, refsym->st_size));
+	    break;
       }
 #endif
 
