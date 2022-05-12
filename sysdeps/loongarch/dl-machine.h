@@ -70,28 +70,18 @@ elf_machine_matches_host (const ElfW (Ehdr) * ehdr)
   return 1;
 }
 
-/* Runtime address of .got */
-#define _GLOBAL_OFFSET_TABLE_ \
-  ({ \
-    ElfW (Addr) * r; \
-    asm("la.pcrel %0, _GLOBAL_OFFSET_TABLE_" : "=r"(r)); \
-    r; \
-  })
+/* Return the run-time load address of the shared object.  */
+static inline ElfW (Addr) elf_machine_load_address (void)
+{
+  extern const ElfW(Ehdr) __ehdr_start attribute_hidden;
+  return (ElfW(Addr)) &__ehdr_start;
+}
 
 /* Return the link-time address of _DYNAMIC.  */
 static inline ElfW (Addr) elf_machine_dynamic (void)
 {
-  return _GLOBAL_OFFSET_TABLE_[0];
-}
-
-/* Return the run-time load address of the shared object.  */
-static inline ElfW (Addr) elf_machine_load_address (void)
-{
-  ElfW (Addr) got_linktime_addr;
-  asm("la.got %0, _GLOBAL_OFFSET_TABLE_"
-      /* Link-time address in GOT entry before runtime relocation */
-      : "=r"(got_linktime_addr));
-  return (ElfW (Addr)) _GLOBAL_OFFSET_TABLE_ - got_linktime_addr;
+  extern ElfW(Dyn) _DYNAMIC[] attribute_hidden;
+  return (ElfW(Addr)) _DYNAMIC - elf_machine_load_address ();
 }
 
 /* Initial entry point code for the dynamic linker.
