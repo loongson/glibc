@@ -238,24 +238,10 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
       }
 #endif
 
-#if !defined RTLD_BOOTSTRAP || !defined HAVE_Z_COMBRELOC
+#if !defined RTLD_BOOTSTRAP
     case R_LARCH_RELATIVE:
-      {
-#if !defined RTLD_BOOTSTRAP && !defined HAVE_Z_COMBRELOC
-	/* This is defined in rtld.c, but nowhere in the static libc.a;
-	   make the reference weak so static programs can still link.
-	   This declaration cannot be done when compiling rtld.c
-	   (i.e. #ifdef RTLD_BOOTSTRAP) because rtld.c contains the
-	   common defn for _dl_rtld_map, which is incompatible with a
-	   weak decl in the same file.  */
-#ifndef SHARED
-	weak_extern (GL (dl_rtld_map));
-#endif
-	if (map != &GL (dl_rtld_map)) /* Already done in rtld itself.  */
-#endif
-	  *addr_field = map->l_addr + reloc->r_addend;
-	break;
-      }
+      *addr_field = map->l_addr + reloc->r_addend;
+      break;
 #endif
 
     case R_LARCH_JUMP_SLOT:
@@ -331,11 +317,6 @@ elf_machine_runtime_setup (struct link_map *l, struct r_scope_elem *scope[],
       extern void _dl_runtime_resolve (void)
 	__attribute__ ((visibility ("hidden")));
       ElfW (Addr) *gotplt = (ElfW (Addr) *) D_PTR (l, l_info[DT_PLTGOT]);
-      /* If a library is prelinked but we have to relocate anyway,
-	 we have to be able to undo the prelinking of .got.plt.
-	 The prelinker saved the address of .plt for us here.  */
-      if (gotplt[1])
-	l->l_mach.plt = gotplt[1] + l->l_addr;
       gotplt[0] = (ElfW (Addr)) & _dl_runtime_resolve;
       gotplt[1] = (ElfW (Addr)) l;
     }
