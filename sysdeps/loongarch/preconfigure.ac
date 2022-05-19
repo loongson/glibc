@@ -1,4 +1,4 @@
-# This file is generated from configure.ac by Autoconf.  DO NOT EDIT!
+GLIBC_PROVIDES[]dnl See aclocal.m4 in the top level source directory.
 # Local preconfigure fragment for sysdeps/loongarch
 
 case "$machine" in
@@ -12,39 +12,33 @@ loongarch*)
     case "$float_abi" in
     soft)
 	abi_flen=0
-	as_fn_error 1 "loongarch does not yet support soft floating-point  ABI!!" "$LINENO" 5
+	AC_MSG_ERROR([loongarch does not yet support soft floating-point  ABI!!], 1)
 	;;
     single)
-	as_fn_error 1 "glibc does not yet support the single floating-point ABI!!" "$LINENO" 5
+	AC_MSG_ERROR([glibc does not yet support the single floating-point ABI!!], 1)
 	;;
     double)
 	abi_flen=64
 	;;
     *)
-	as_fn_error 1 "Unable to determine floating-point ABI!!" "$LINENO" 5
+	AC_MSG_ERROR([Unable to determine floating-point ABI!!], 1)
 	;;
     esac
 
     case "$grlen" in
     32)
-	as_fn_error 1 "loongarch does not yet support ilp32 ABI!!" "$LINENO" 5
+	AC_MSG_ERROR([loongarch does not yet support ilp32 ABI!!], 1)
 	;;
     64)
 	machine=loongarch/lp64
 	;;
     *)
-	as_fn_error 1 "Unable to determine GRLEN!!" "$LINENO" 5
+	AC_MSG_ERROR([Unable to determine GRLEN!!], 1)
 	;;
     esac
 
-    cat >>confdefs.h <<_ACEOF
-#define LOONGARCH_ABI_GRLEN $grlen
-_ACEOF
-
-    cat >>confdefs.h <<_ACEOF
-#define LOONGARCH_ABI_FRLEN $abi_flen
-_ACEOF
-
+    AC_DEFINE_UNQUOTED([LOONGARCH_ABI_GRLEN], [$grlen])
+    AC_DEFINE_UNQUOTED([LOONGARCH_ABI_FRLEN], [$abi_flen])
 
     base_machine=loongarch
     ;;
