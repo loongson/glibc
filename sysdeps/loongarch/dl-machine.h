@@ -97,19 +97,8 @@ static inline ElfW (Addr) elf_machine_dynamic (void)
       bl	_dl_start   \n\
       # Stash user entry point in s0.   \n\
       or	$s0, $v0, $zero   \n\
-      # See if we were run as a command with the executable file   \n\
-      # name as an extra leading argument.   \n\
-      la	$a0, _dl_skip_args   \n\
-      ld.w	$a0, $a0, 0   \n\
       # Load the original argument count.   \n\
       ld.d	$a1, $sp, 0   \n\
-      # Subtract _dl_skip_args from it.   \n\
-      sub.d	$a1, $a1, $a0   \n\
-      # Adjust the stack pointer to skip _dl_skip_args words.   \n\
-      slli.d	$a0, $a0, 3   \n\
-      add.d	$sp, $sp, $a0   \n\
-      # Save back the modified argument count.   \n\
-      st.d	$a1, $sp, 0   \n\
       # Call _dl_init (struct link_map *main_map, int argc, char **argv, \
 		       char **env)    \n\
       la	$a0, _rtld_local   \n\
@@ -142,7 +131,7 @@ static inline ElfW (Addr) elf_machine_dynamic (void)
 #define elf_machine_plt_value(map, reloc, value) (value)
 
 static inline ElfW (Addr)
-  elf_machine_fixup_plt (struct link_map *map, lookup_t t,
+elf_machine_fixup_plt (struct link_map *map, lookup_t t,
 			 const ElfW (Sym) * refsym, const ElfW (Sym) * sym,
 			 const ElfW (Rela) * reloc, ElfW (Addr) * reloc_addr,
 			 ElfW (Addr) value)
