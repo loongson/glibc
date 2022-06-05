@@ -47,13 +47,7 @@
 #define ELF_MACHINE_IRELATIVE R_LARCH_IRELATIVE
 
 #define elf_machine_type_class(type)				\
-  ((ELF_RTYPE_CLASS_PLT *((type) == ELF_MACHINE_JMP_SLOT	\
-     || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_DTPREL32)	\
-     || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_DTPMOD32)	\
-     || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_TPREL32)	\
-     || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_DTPREL64)	\
-     || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_DTPMOD64)	\
-     || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_TPREL64)))	\
+  ((ELF_RTYPE_CLASS_PLT *((type) == ELF_MACHINE_JMP_SLOT))	\
    | (ELF_RTYPE_CLASS_COPY *((type) == R_LARCH_COPY)))
 
 #define ELF_MACHINE_NO_REL 1
