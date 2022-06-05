@@ -201,7 +201,7 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 	    break;
 	  if (__glibc_unlikely (sym->st_size > refsym->st_size)
 	      || (__glibc_unlikely (sym->st_size < refsym->st_size)
-	        && GLRO(dl_verbose)))
+		&& GLRO(dl_verbose)))
 	  {
 	    const char *strtab;
 
