@@ -1417,6 +1417,8 @@ GLIBC_2.36 printf_size F
 GLIBC_2.36 printf_size_info F
 GLIBC_2.36 prlimit F
 GLIBC_2.36 prlimit64 F
+GLIBC_2.36 process_madvise F
+GLIBC_2.36 process_mrelease F
 GLIBC_2.36 process_vm_readv F
 GLIBC_2.36 process_vm_writev F
 GLIBC_2.36 profil F
