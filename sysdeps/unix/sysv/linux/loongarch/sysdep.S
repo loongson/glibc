@@ -32,7 +32,7 @@ END (__syscall_error)
 ENTRY (__syscall_set_errno)
 
 /* We got here because a0 < 0, but only codes in the range [-4095, -1]
-   represent errors.	Otherwise, just return the result normally.
+   represent errors.  Otherwise, just return the result normally.
  */
 	li.d		t1, -4096
 	bgeu		t1, a0, L (out)

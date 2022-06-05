@@ -31,7 +31,7 @@ elf_ifunc_invoke (ElfW (Addr) addr)
 }
 
 static inline void __attribute ((always_inline))
-elf_irela (const ElfW (Rela) * reloc)
+elf_irela (const ElfW (Rela) *reloc)
 {
   ElfW (Addr) *const reloc_addr = (void *) reloc->r_offset;
   const unsigned long int r_type = ELFW (R_TYPE) (reloc->r_info);

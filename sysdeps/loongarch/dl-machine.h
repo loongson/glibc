@@ -47,21 +47,21 @@
 #define ELF_MACHINE_IRELATIVE R_LARCH_IRELATIVE
 
 #define elf_machine_type_class(type)				\
-  ((ELF_RTYPE_CLASS_PLT * ((type) == ELF_MACHINE_JMP_SLOT	\
+  ((ELF_RTYPE_CLASS_PLT *((type) == ELF_MACHINE_JMP_SLOT	\
      || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_DTPREL32)	\
      || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_DTPMOD32)	\
      || (__WORDSIZE == 32 && (type) == R_LARCH_TLS_TPREL32)	\
      || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_DTPREL64)	\
      || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_DTPMOD64)	\
      || (__WORDSIZE == 64 && (type) == R_LARCH_TLS_TPREL64)))	\
-   | (ELF_RTYPE_CLASS_COPY * ((type) == R_LARCH_COPY)))
+   | (ELF_RTYPE_CLASS_COPY *((type) == R_LARCH_COPY)))
 
 #define ELF_MACHINE_NO_REL 1
 #define ELF_MACHINE_NO_RELA 0
 
 /* Return nonzero iff ELF header is compatible with the running host.  */
 static inline int
-elf_machine_matches_host (const ElfW (Ehdr) * ehdr)
+elf_machine_matches_host (const ElfW (Ehdr) *ehdr)
 {
   /* We can only run LoongArch binaries.  */
   if (ehdr->e_machine != EM_LOONGARCH)
@@ -132,8 +132,8 @@ static inline ElfW (Addr) elf_machine_dynamic (void)
 
 static inline ElfW (Addr)
 elf_machine_fixup_plt (struct link_map *map, lookup_t t,
-			 const ElfW (Sym) * refsym, const ElfW (Sym) * sym,
-			 const ElfW (Rela) * reloc, ElfW (Addr) * reloc_addr,
+			 const ElfW (Sym) *refsym, const ElfW (Sym) *sym,
+			 const ElfW (Rela) *reloc, ElfW (Addr) *reloc_addr,
 			 ElfW (Addr) value)
 {
   return *reloc_addr = value;
@@ -149,8 +149,8 @@ elf_machine_fixup_plt (struct link_map *map, lookup_t t,
 
 static inline void __attribute__ ((always_inline))
 elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
-		  const ElfW (Rela) * reloc,
-		  const ElfW (Sym) * sym,
+		  const ElfW (Rela) *reloc,
+		  const ElfW (Sym) *sym,
 		  const struct r_found_version *version,
 		  void *const reloc_addr, int skip_ifunc)
 {
@@ -246,7 +246,7 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 }
 
 static inline void __attribute__ ((always_inline))
-elf_machine_rela_relative (ElfW (Addr) l_addr, const ElfW (Rela) * reloc,
+elf_machine_rela_relative (ElfW (Addr) l_addr, const ElfW (Rela) *reloc,
 			   void *const reloc_addr)
 {
   *(ElfW (Addr) *) reloc_addr = l_addr + reloc->r_addend;
@@ -255,7 +255,7 @@ elf_machine_rela_relative (ElfW (Addr) l_addr, const ElfW (Rela) * reloc,
 static inline void __attribute__ ((always_inline))
 elf_machine_lazy_rel (struct link_map *map, struct r_scope_elem *scope[],
 		      ElfW (Addr) l_addr,
-		      const ElfW (Rela) * reloc, int skip_ifunc)
+		      const ElfW (Rela) *reloc, int skip_ifunc)
 {
   ElfW (Addr) *const reloc_addr = (void *) (l_addr + reloc->r_offset);
   const unsigned int r_type = ELFW (R_TYPE) (reloc->r_info);

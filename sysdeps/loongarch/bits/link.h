@@ -39,7 +39,7 @@ typedef struct La_loongarch_retval
 
 __BEGIN_DECLS
 
-extern ElfW (Addr) la_loongarch_gnu_pltenter (ElfW (Sym) * __sym,
+extern ElfW (Addr) la_loongarch_gnu_pltenter (ElfW (Sym) *__sym,
 					      unsigned int __ndx,
 					      uintptr_t *__refcook,
 					      uintptr_t *__defcook,
@@ -47,7 +47,7 @@ extern ElfW (Addr) la_loongarch_gnu_pltenter (ElfW (Sym) * __sym,
 					      unsigned int *__flags,
 					      const char *__symname,
 					      long int *__framesizep);
-extern unsigned int la_loongarch_gnu_pltexit (ElfW (Sym) * __sym,
+extern unsigned int la_loongarch_gnu_pltexit (ElfW (Sym) *__sym,
 					      unsigned int __ndx,
 					      uintptr_t *__refcook,
 					      uintptr_t *__defcook,

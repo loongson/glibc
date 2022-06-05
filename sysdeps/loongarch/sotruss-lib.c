@@ -22,7 +22,7 @@
 #include <elf/sotruss-lib.c>
 
 ElfW (Addr)
-la_loongarch_gnu_pltenter (ElfW (Sym) * sym __attribute__ ((unused)),
+la_loongarch_gnu_pltenter (ElfW (Sym) *sym __attribute__ ((unused)),
 			   unsigned int ndx __attribute__ ((unused)),
 			   uintptr_t *refcook, uintptr_t *defcook,
 			   La_loongarch_regs *regs, unsigned int *flags,
@@ -38,7 +38,7 @@ la_loongarch_gnu_pltenter (ElfW (Sym) * sym __attribute__ ((unused)),
 }
 
 unsigned int
-la_loongarch_gnu_pltexit (ElfW (Sym) * sym, unsigned int ndx,
+la_loongarch_gnu_pltexit (ElfW (Sym) *sym, unsigned int ndx,
 			  uintptr_t *refcook, uintptr_t *defcook,
 			  const struct La_loongarch_regs *inregs,
 			  struct La_loongarch_retval *outregs,
