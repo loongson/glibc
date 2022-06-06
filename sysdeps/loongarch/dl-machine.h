@@ -101,16 +101,15 @@ static inline ElfW (Addr) elf_machine_dynamic (void)
       slli.d	$a3, $a1, 3   \n\
       add.d	$a3, $a3, $a2   \n\
       addi.d	$a3, $a3, 8   \n\
+      # Stash the stack pointer in s1.\n\
+      or	$s1, $sp, $zero	\n\
       # Adjust $sp for 16-aligned   \n\
-      srli.d  $t0, $sp, 4   \n\
-      slli.d  $t0, $t0, 4   \n\
-      ori	$t1, $sp, 0   \n\
-      addi.d  $sp, $t0, -32   \n\
-      st.d	$t1, $sp, 24   \n\
+      bstrins.d	$sp, $zero, 3, 0  \n\
       # Call the function to run the initializers.   \n\
       bl	_dl_init   \n\
+      # Restore the stack pointer for _start.\n\
+      or	$sp, $s1, $zero	 \n\
       # Pass our finalizer function to _start.   \n\
-      ld.d    $sp, $sp, 24   \n\
       la	$a0, _dl_fini   \n\
       # Jump to the user entry point.   \n\
       jirl	$zero, $s0, 0   \n\
