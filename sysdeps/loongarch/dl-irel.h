@@ -21,13 +21,19 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/ifunc.h>
 
 #define ELF_MACHINE_IRELA 1
 
 static inline ElfW (Addr) __attribute ((always_inline))
 elf_ifunc_invoke (ElfW (Addr) addr)
 {
-  return ((ElfW (Addr) (*) (void)) (addr)) ();
+  __ifunc_arg_t arg =
+  {
+    ._size = sizeof (__ifunc_arg_t),
+    ._hwcap = GLRO(dl_hwcap),
+  };
+  return ((ElfW(Addr) (*) (const __ifunc_arg_t *)) (addr)) (&arg);
 }
 
 static inline void __attribute ((always_inline))
