@@ -164,6 +164,13 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 
   switch (r_type)
     {
+
+    case R_LARCH_JUMP_SLOT:
+    case __WORDSIZE == 64 ? R_LARCH_64:
+    R_LARCH_32:
+      *addr_field = value;
+      break;
+
 #ifndef RTLD_BOOTSTRAP
     case __WORDSIZE == 64 ? R_LARCH_TLS_DTPMOD64:
     R_LARCH_TLS_DTPMOD32:
@@ -208,18 +215,9 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 		  MIN (sym->st_size, refsym->st_size));
 	    break;
       }
-#endif
 
-#if !defined RTLD_BOOTSTRAP
     case R_LARCH_RELATIVE:
       *addr_field = map->l_addr + reloc->r_addend;
-      break;
-#endif
-
-    case R_LARCH_JUMP_SLOT:
-    case __WORDSIZE == 64 ? R_LARCH_64:
-    R_LARCH_32:
-      *addr_field = value;
       break;
 
     case R_LARCH_IRELATIVE:
@@ -231,6 +229,7 @@ elf_machine_rela (struct link_map *map, struct r_scope_elem *scope[],
 
     case R_LARCH_NONE:
       break;
+#endif
 
     default:
       _dl_reloc_bad_type (map, r_type, 0);
