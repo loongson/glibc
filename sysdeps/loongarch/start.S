@@ -51,8 +51,7 @@ ENTRY (ENTRY_POINT)
 	ADDI		a2, sp, SZREG
 
 	/* Adjust $sp for 16-aligned */
-	SRLI		sp, sp, 4
-	SLLI		sp, sp, 4
+	BSTRINS		sp, zero, 3, 0
 
 	move		a3, zero /* used to be init */
 	move		a4, zero /* used to be fini */

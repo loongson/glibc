@@ -32,7 +32,7 @@
 
 ENTRY (__clone)
 
-	/* Align stack to 16 or 8 bytes per the ABI.  */
+	/* Align stack to 16.  */
 	BSTRINS		a1, zero, 3, 0
 
 	/* Sanity check arguments.  */

@@ -66,7 +66,7 @@ L (thread_start3):
 	.cfi_label .Ldummy
 	cfi_undefined (1)
 
-	/* Align stack to 16 or 8 bytes per the ABI.  */
+	/* Align stack to 16.  */
 	BSTRINS		sp, zero, 3, 0
 
 	/* Set up arguments for the function call.  */
