@@ -258,13 +258,6 @@ elf_machine_lazy_rel (struct link_map *map, struct r_scope_elem *scope[],
       else
 	*reloc_addr = map->l_mach.plt;
     }
-  else if (__glibc_unlikely (r_type == R_LARCH_IRELATIVE))
-    {
-      ElfW (Addr) *value = (void *) (l_addr + reloc->r_addend);
-      if (__glibc_likely (!skip_ifunc))
-	value = (ElfW (Addr) *) ((ElfW (Addr) (*) (void)) value) ();
-      *reloc_addr = (ElfW (Addr)) value;
-    }
   else
     _dl_reloc_bad_type (map, r_type, 1);
 }
