@@ -827,6 +827,8 @@ GLIBC_2.36 fseeko64 F
 GLIBC_2.36 fsetpos F
 GLIBC_2.36 fsetpos64 F
 GLIBC_2.36 fsetxattr F
+GLIBC_2.36 fsmount F
+GLIBC_2.36 fsopen F
 GLIBC_2.36 fstat F
 GLIBC_2.36 fstat64 F
 GLIBC_2.36 fstatat F
@@ -1279,6 +1281,7 @@ GLIBC_2.36 modfl F
 GLIBC_2.36 moncontrol F
 GLIBC_2.36 monstartup F
 GLIBC_2.36 mount F
+GLIBC_2.36 move_mount F
 GLIBC_2.36 mprobe F
 GLIBC_2.36 mprotect F
 GLIBC_2.36 mq_close F
