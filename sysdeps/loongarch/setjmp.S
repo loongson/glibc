@@ -21,7 +21,7 @@
 
 ENTRY (_setjmp)
 	li.w		a1,0
-	b		__sigsetjmp
+	b		HIDDEN_JUMPTARGET (__sigsetjmp)
 END (_setjmp)
 
 ENTRY (setjmp)

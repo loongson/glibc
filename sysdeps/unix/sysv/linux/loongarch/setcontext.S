@@ -95,6 +95,6 @@ LEAF (__start_context)
 	beqz		s2, 1f
 	bl		__setcontext
 1:
-	b		exit
+	b		HIDDEN_JUMPTARGET(exit)
 
 PSEUDO_END (__start_context)
