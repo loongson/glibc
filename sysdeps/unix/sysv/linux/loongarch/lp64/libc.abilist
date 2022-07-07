@@ -585,6 +585,7 @@ GLIBC_2.36 btowc F
 GLIBC_2.36 bzero F
 GLIBC_2.36 c16rtomb F
 GLIBC_2.36 c32rtomb F
+GLIBC_2.36 c8rtomb F
 GLIBC_2.36 call_once F
 GLIBC_2.36 calloc F
 GLIBC_2.36 canonicalize_file_name F
@@ -821,6 +822,7 @@ GLIBC_2.36 frexp F
 GLIBC_2.36 frexpf F
 GLIBC_2.36 frexpl F
 GLIBC_2.36 fscanf F
+GLIBC_2.36 fsconfig F
 GLIBC_2.36 fseek F
 GLIBC_2.36 fseeko F
 GLIBC_2.36 fseeko64 F
@@ -829,6 +831,7 @@ GLIBC_2.36 fsetpos64 F
 GLIBC_2.36 fsetxattr F
 GLIBC_2.36 fsmount F
 GLIBC_2.36 fsopen F
+GLIBC_2.36 fspick F
 GLIBC_2.36 fstat F
 GLIBC_2.36 fstat64 F
 GLIBC_2.36 fstatat F
@@ -1231,6 +1234,7 @@ GLIBC_2.36 mblen F
 GLIBC_2.36 mbrlen F
 GLIBC_2.36 mbrtoc16 F
 GLIBC_2.36 mbrtoc32 F
+GLIBC_2.36 mbrtoc8 F
 GLIBC_2.36 mbrtowc F
 GLIBC_2.36 mbsinit F
 GLIBC_2.36 mbsnrtowcs F
@@ -1281,6 +1285,7 @@ GLIBC_2.36 modfl F
 GLIBC_2.36 moncontrol F
 GLIBC_2.36 monstartup F
 GLIBC_2.36 mount F
+GLIBC_2.36 mount_setattr F
 GLIBC_2.36 move_mount F
 GLIBC_2.36 mprobe F
 GLIBC_2.36 mprotect F
@@ -1346,6 +1351,7 @@ GLIBC_2.36 open F
 GLIBC_2.36 open64 F
 GLIBC_2.36 open_by_handle_at F
 GLIBC_2.36 open_memstream F
+GLIBC_2.36 open_tree F
 GLIBC_2.36 open_wmemstream F
 GLIBC_2.36 openat F
 GLIBC_2.36 openat64 F
