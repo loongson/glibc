@@ -20,7 +20,6 @@
 #include <init-arch.h>
 
 extern __typeof (REDIRECT_NAME) OPTIMIZE (lasx) attribute_hidden;
-extern __typeof (REDIRECT_NAME) OPTIMIZE (lsx) attribute_hidden;
 extern __typeof (REDIRECT_NAME) OPTIMIZE (aligned) attribute_hidden;
 extern __typeof (REDIRECT_NAME) OPTIMIZE (unaligned) attribute_hidden;
 
@@ -31,8 +30,6 @@ IFUNC_SELECTOR (void)
 
   if (SUPPORT_LASX)
     return OPTIMIZE (lasx);
-  else if (SUPPORT_LSX)
-    return OPTIMIZE (lsx);
   else if (SUPPORT_UAL)
     return OPTIMIZE (unaligned);
   else

@@ -1,4 +1,4 @@
-/* Common definition for memcpy, and memset implementation.
+/* Common definition for memmove implementation.
    All versions must be listed in ifunc-impl-list.c.
    Copyright (C) 2017-2022 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -19,6 +19,7 @@
 
 #include <init-arch.h>
 
+extern __typeof (REDIRECT_NAME) OPTIMIZE (lsx) attribute_hidden;
 extern __typeof (REDIRECT_NAME) OPTIMIZE (aligned) attribute_hidden;
 extern __typeof (REDIRECT_NAME) OPTIMIZE (unaligned) attribute_hidden;
 
@@ -27,6 +28,8 @@ IFUNC_SELECTOR (void)
 {
   INIT_ARCH();
 
+  if (SUPPORT_LSX)
+    return OPTIMIZE (lsx);
   if (SUPPORT_UAL)
     return OPTIMIZE (unaligned);
   else
