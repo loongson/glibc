@@ -50,6 +50,7 @@ __libc_ifunc_impl_list (const char *name, struct libc_ifunc_impl *array,
 
   IFUNC_IMPL (i, name, memset,
 	      IFUNC_IMPL_ADD (array, i, memset, 1, __memset_lasx)
+	      IFUNC_IMPL_ADD (array, i, memset, 1, __memset_lsx)
 	      IFUNC_IMPL_ADD (array, i, memset, 1, __memset_aligned)
 	      IFUNC_IMPL_ADD (array, i, memset, 1, __memset_unaligned)
 	      )
