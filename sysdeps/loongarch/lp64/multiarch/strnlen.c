@@ -1,4 +1,4 @@
-/* Common definition for str{,n}len implementation.
+/* Multiple versions of strnlen.
    All versions must be listed in ifunc-impl-list.c.
    Copyright (C) 2017-2022 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -17,21 +17,24 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
-#include <init-arch.h>
+/* Define multiple versions only for the definition in libc.  */
+#if IS_IN (libc)
+# define strnlen __redirect_strnlen
+# define __strnlen __redirect___strnlen
+# include <string.h>
+# undef __strnlen
+# undef strnlen
 
-extern __typeof (REDIRECT_NAME) OPTIMIZE (lsx) attribute_hidden;
-extern __typeof (REDIRECT_NAME) OPTIMIZE (aligned) attribute_hidden;
-extern __typeof (REDIRECT_NAME) OPTIMIZE (unaligned) attribute_hidden;
+# define SYMBOL_NAME strnlen
+# include "ifunc-strlen.h"
 
-static inline void *
-IFUNC_SELECTOR (void)
-{
-  INIT_ARCH();
+libc_ifunc_redirected (__redirect_strnlen, __strnlen, IFUNC_SELECTOR ());
+weak_alias (__strnlen, strnlen);
+# ifdef SHARED
+__hidden_ver1 (__strnlen, __GI___strnlen, __redirect___strnlen)
+  __attribute__((visibility ("hidden")));
+__hidden_ver1 (strnlen, __GI_strnlen, __redirect_strnlen)
+  __attribute__((weak, visibility ("hidden")));
+# endif
+#endif
 
-  if (SUPPORT_LSX)
-    return OPTIMIZE (lsx);
-  if (SUPPORT_UAL)
-    return OPTIMIZE (unaligned);
-  else
-    return OPTIMIZE (aligned);
-}
