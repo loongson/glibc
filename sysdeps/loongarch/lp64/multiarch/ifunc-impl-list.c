@@ -86,6 +86,12 @@ __libc_ifunc_impl_list (const char *name, struct libc_ifunc_impl *array,
 	      IFUNC_IMPL_ADD (array, i, strrchr, 1, __strrchr_aligned)
 	      )
 
+  IFUNC_IMPL (i, name, strlen,
+	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_lsx)
+	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_aligned)
+	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_unaligned)
+	      )
+
   return i;
 }
 
