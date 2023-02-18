@@ -6,5 +6,6 @@ sysdep_routines += memcpy-aligned memcpy-unaligned memcpy-lasx \
 		   memrchr-generic memrchr-lsx \
 		   memcmp-aligned memcmp-lsx \
 		   rawmemchr-aligned rawmemchr-lsx \
-		   strchr-aligned strchr-unaligned strchr-lsx
+		   strchr-aligned strchr-unaligned strchr-lsx \
+		   strrchr-aligned strrchr-lsx
 endif
