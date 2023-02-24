@@ -9,9 +9,7 @@
 
 #if IS_IN (libc)
 
-#ifndef MEMMOVE_NAME
 #define MEMMOVE_NAME __memmove_unaligned
-#endif
 
 #define LD_64(reg, n) \
 	ld.d	t0, reg, n;    \

@@ -9,9 +9,7 @@
 
 #if IS_IN (libc)
 
-#ifndef MEMCPY_NAME
 #define MEMCPY_NAME __memcpy_unaligned
-#endif
 
 #define LD_64(reg, n) \
 	ld.d    t0, reg, n;    \

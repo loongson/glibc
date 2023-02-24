@@ -27,10 +27,7 @@
 
 #if IS_IN (libc)
 
-/* Allow the routine to be named something else if desired.  */
-#ifndef MEMCPY_NAME
 #define MEMCPY_NAME __memcpy_lasx
-#endif
 
 #ifdef ANDROID_CHANGES
 LEAF(MEMCPY_NAME, 0)

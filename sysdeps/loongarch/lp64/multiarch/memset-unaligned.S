@@ -9,9 +9,7 @@
 
 #if IS_IN (libc)
 
-#ifndef MEMSET_NAME
 #define MEMSET_NAME __memset_unaligned
-#endif
 
 #define ST_128(n) 	\
 	st.d	a1, a0, n;		 \

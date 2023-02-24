@@ -24,10 +24,7 @@
 
 #if IS_IN (libc)
 
-/* Allow the routine to be named something else if desired.  */
-#ifndef MEMSET_NAME
 #define MEMSET_NAME __memset_lasx
-#endif
 
 #ifdef ANDROID_CHANGES
 LEAF(MEMSET_NAME, 0)
