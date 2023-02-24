@@ -24,7 +24,7 @@
 # undef strlen
 
 # define SYMBOL_NAME strlen
-# include "ifunc-strchr.h"
+# include "ifunc-lsx.h"
 
 libc_ifunc_redirected (__redirect_strlen, __new_strlen,
 		       IFUNC_SELECTOR ());

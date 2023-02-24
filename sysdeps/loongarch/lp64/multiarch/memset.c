@@ -24,7 +24,7 @@
 # undef memset
 
 # define SYMBOL_NAME memset
-# include "ifunc-memset.h"
+# include "ifunc-lasx.h"
 
 libc_ifunc_redirected (__redirect_memset, __new_memset,
 		       IFUNC_SELECTOR ());

@@ -24,7 +24,7 @@
 # undef memcmp
 
 # define SYMBOL_NAME memcmp
-# include "ifunc-memcmp.h"
+# include "ifunc-memchr.h"
 
 libc_ifunc_redirected (__redirect_memcmp, __new_memcmp,
 		       IFUNC_SELECTOR ());

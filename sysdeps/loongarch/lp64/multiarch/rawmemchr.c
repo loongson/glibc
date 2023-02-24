@@ -25,7 +25,7 @@
 # undef __rawmemchr
 
 # define SYMBOL_NAME rawmemchr
-# include "ifunc-rawmemchr.h"
+# include "ifunc-memchr.h"
 
 libc_ifunc_redirected (__redirect_rawmemchr, __rawmemchr,
                        IFUNC_SELECTOR ());

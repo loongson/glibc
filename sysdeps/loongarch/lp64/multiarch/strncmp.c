@@ -24,7 +24,7 @@
 # undef strncmp
 
 # define SYMBOL_NAME strncmp
-# include "ifunc-strchr.h"
+# include "ifunc-lsx.h"
 
 libc_ifunc_redirected (__redirect_strncmp, strncmp, IFUNC_SELECTOR ());
 

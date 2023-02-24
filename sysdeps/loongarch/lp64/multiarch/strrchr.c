@@ -24,7 +24,7 @@
 # undef strrchr
 
 # define SYMBOL_NAME strrchr
-# include "ifunc-strrchr.h"
+# include "ifunc-memchr.h"
 
 libc_ifunc_redirected (__redirect_strrchr, __new_strrchr,
 		       IFUNC_SELECTOR ());

@@ -24,7 +24,7 @@
 # undef memcpy
 
 # define SYMBOL_NAME memcpy
-# include "ifunc-memcpy.h"
+# include "ifunc-lasx.h"
 
 libc_ifunc_redirected (__redirect_memcpy, __new_memcpy,
 		       IFUNC_SELECTOR ());

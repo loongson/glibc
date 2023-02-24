@@ -24,7 +24,7 @@
 # undef strcpy
 
 # define SYMBOL_NAME strcpy
-# include "ifunc-strchr.h"
+# include "ifunc-lsx.h"
 
 libc_ifunc_redirected (__redirect_strcpy, strcpy, IFUNC_SELECTOR ());
 
