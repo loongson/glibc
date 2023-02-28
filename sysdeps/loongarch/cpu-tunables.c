@@ -31,18 +31,14 @@
   (HWCAP_LOONGARCH_UAL | HWCAP_LOONGARCH_LSX | HWCAP_LOONGARCH_LASX)
 
 # define CHECK_GLIBC_IFUNC_CPU_OFF(f, name, len)			\
-  if (!memcmp (f, #name, len))						\
+  _Static_assert (sizeof (#name) - 1 == len, #name " != " #len);	\
+  if (!memcmp (f, #name, len) &&					\
+      (GLRO (dl_hwcap) & HWCAP_LOONGARCH_##name))			\
     {									\
-      if ((GLRO (dl_hwcap) & HWCAP_LOONGARCH_##name))			\
-      {									\
-	GLRO (dl_hwcap) &= (HWCAP_LOONGARCH_##name |			\
-			   (~HWCAP_LOONGARCH_IFUNC));			\
-	return;								\
-      }									\
-      else								\
-	_dl_fatal_printf ("%s is not supported on this machine!!\n",	\
-			#name);						\
-    }
+      hwcap |= (HWCAP_LOONGARCH_##name | (~HWCAP_LOONGARCH_IFUNC));	\
+      break;								\
+    }									\
+
 
 attribute_hidden
 void
@@ -50,15 +46,49 @@ TUNABLE_CALLBACK (set_hwcaps) (tunable_val_t *valp)
 {
   const char *p = valp->strval;
   size_t len;
+  unsigned long hwcap = 0;
+  const char *c;
 
-  len = strlen(p);
+  do {
+      for (c = p; *c != ','; c++)
+	if (*c == '\0')
+	  break;
 
-  CHECK_GLIBC_IFUNC_CPU_OFF (p, LSX, len);
-  CHECK_GLIBC_IFUNC_CPU_OFF (p, UAL, len);
-  CHECK_GLIBC_IFUNC_CPU_OFF (p, LASX, len);
+      len = c - p;
 
-  _dl_fatal_printf ("The valid values of glibc.cpu.hwcaps is UAL, LASX, LSX!!\n"
-	);
+      switch(len)
+      {
+	default:
+	  _dl_fatal_printf (
+	    "The valid values of glibc.cpu.hwcaps is UAL, LASX, LSX!!\n"
+			    );
+	  break;
+	case 3:
+	  {
+	    CHECK_GLIBC_IFUNC_CPU_OFF (p, LSX, 3);
+	    CHECK_GLIBC_IFUNC_CPU_OFF (p, UAL, 3);
+	    _dl_fatal_printf (
+		"Some features are invalid or not supported on this machine!!\n"
+		"The valid values of glibc.cpu.hwcaps is UAL, LASX, LSX!!\n"
+                       );
+	  }
+	  break;
+	case 4:
+	  {
+	    CHECK_GLIBC_IFUNC_CPU_OFF (p, LASX, 4);
+	    _dl_fatal_printf (
+		"Some features are invalid or not supported on this machine!!\n"
+		"The valid values of glibc.cpu.hwcaps is UAL, LASX, LSX!!\n"
+                       );
+	  }
+	  break;
+      }
+
+      p += len + 1;
+    }
+  while (*c != '\0');
+
+  GLRO (dl_hwcap) &= hwcap;
 }
 
 #endif
