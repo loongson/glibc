@@ -90,7 +90,6 @@ L(_mc8_a):
 END(STRCHR_NAME)
 
 #ifdef _LIBC
-libc_hidden_builtin_def (STRCHR_NAME)
 weak_alias (STRCHR_NAME, index)
 #endif
 

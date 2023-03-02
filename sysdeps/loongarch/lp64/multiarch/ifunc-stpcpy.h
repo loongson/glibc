@@ -1,4 +1,4 @@
-/* Multiple versions of strchr.
+/* Common definition for memchr implementation.
    All versions must be listed in ifunc-impl-list.c.
    Copyright (C) 2017-2022 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -17,23 +17,18 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
-/* Define multiple versions only for the definition in libc.  */
-#if IS_IN (libc)
-# define strchr __redirect_strchr
-# include <string.h>
-# undef strchr
+#include <init-arch.h>
 
-# define SYMBOL_NAME strchr
-# include "ifunc-lasx.h"
+extern __typeof (REDIRECT_NAME) OPTIMIZE (lsx) attribute_hidden;
+extern __typeof (REDIRECT_NAME) OPTIMIZE (aligned) attribute_hidden;
 
-libc_ifunc_redirected (__redirect_strchr, __new_strchr,
-		       IFUNC_SELECTOR ());
+static inline void *
+IFUNC_SELECTOR (void)
+{
+  INIT_ARCH();
 
-# ifdef SHARED
-__hidden_ver1 (__new_strchr, __GI_strchr, __redirect_strchr)
-  __attribute__ ((visibility ("hidden")));
-# endif
-
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_strchr, strchr, GLIBC_2_27);
-#endif
+  if (SUPPORT_LSX)
+    return OPTIMIZE (lsx);
+  else
+    return OPTIMIZE (aligned);
+}

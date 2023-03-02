@@ -43,6 +43,7 @@ __libc_ifunc_impl_list (const char *name, struct libc_ifunc_impl *array,
 	      )
 
   IFUNC_IMPL (i, name, memmove,
+	      IFUNC_IMPL_ADD (array, i, memmove, 1, __memmove_lasx)
 	      IFUNC_IMPL_ADD (array, i, memmove, 1, __memmove_lsx)
 	      IFUNC_IMPL_ADD (array, i, memmove, 1, __memmove_aligned)
 	      IFUNC_IMPL_ADD (array, i, memmove, 1, __memmove_unaligned)
@@ -56,49 +57,58 @@ __libc_ifunc_impl_list (const char *name, struct libc_ifunc_impl *array,
 	      )
 
   IFUNC_IMPL (i, name, memchr,
+	      IFUNC_IMPL_ADD (array, i, memchr, 1, __memchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, memchr, 1, __memchr_lsx)
 	      IFUNC_IMPL_ADD (array, i, memchr, 1, __memchr_aligned)
 	      )
 
   IFUNC_IMPL (i, name, memrchr,
-	      IFUNC_IMPL_ADD (array, i, memrchr, 1, __memrchr_generic)
+	      IFUNC_IMPL_ADD (array, i, memrchr, 1, __memrchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, memrchr, 1, __memrchr_lsx)
+	      IFUNC_IMPL_ADD (array, i, memrchr, 1, __memrchr_generic)
 	      )
 
   IFUNC_IMPL (i, name, memcmp,
+	      IFUNC_IMPL_ADD (array, i, memcmp, 1, __memcmp_lasx)
 	      IFUNC_IMPL_ADD (array, i, memcmp, 1, __memcmp_lsx)
 	      IFUNC_IMPL_ADD (array, i, memcmp, 1, __memcmp_aligned)
 	      )
 
   IFUNC_IMPL (i, name, rawmemchr,
+	      IFUNC_IMPL_ADD (array, i, rawmemchr, 1, __rawmemchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, rawmemchr, 1, __rawmemchr_lsx)
 	      IFUNC_IMPL_ADD (array, i, rawmemchr, 1, __rawmemchr_aligned)
 	      )
 
   IFUNC_IMPL (i, name, strchr,
+	      IFUNC_IMPL_ADD (array, i, strchr, 1, __strchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, strchr, 1, __strchr_lsx)
 	      IFUNC_IMPL_ADD (array, i, strchr, 1, __strchr_aligned)
 	      IFUNC_IMPL_ADD (array, i, strchr, 1, __strchr_unaligned)
 	      )
 
   IFUNC_IMPL (i, name, strrchr,
+	      IFUNC_IMPL_ADD (array, i, strrchr, 1, __strrchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, strrchr, 1, __strrchr_lsx)
 	      IFUNC_IMPL_ADD (array, i, strrchr, 1, __strrchr_aligned)
 	      )
 
   IFUNC_IMPL (i, name, strlen,
+	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_lasx)
 	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_lsx)
 	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_aligned)
 	      IFUNC_IMPL_ADD (array, i, strlen, 1, __strlen_unaligned)
 	      )
 
   IFUNC_IMPL (i, name, strnlen,
+	      IFUNC_IMPL_ADD (array, i, strnlen, 1, __strnlen_lasx)
 	      IFUNC_IMPL_ADD (array, i, strnlen, 1, __strnlen_lsx)
 	      IFUNC_IMPL_ADD (array, i, strnlen, 1, __strnlen_aligned)
 	      IFUNC_IMPL_ADD (array, i, strnlen, 1, __strnlen_unaligned)
 	      )
 
   IFUNC_IMPL (i, name, strchrnul,
+	      IFUNC_IMPL_ADD (array, i, strchrnul, 1, __strchrnul_lasx)
 	      IFUNC_IMPL_ADD (array, i, strchrnul, 1, __strchrnul_lsx)
 	      IFUNC_IMPL_ADD (array, i, strchrnul, 1, __strchrnul_aligned)
 	      IFUNC_IMPL_ADD (array, i, strchrnul, 1, __strchrnul_unaligned)

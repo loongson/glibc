@@ -1,16 +1,16 @@
 ifeq ($(subdir),string)
 sysdep_routines += memcpy-aligned memcpy-unaligned memcpy-lasx \
-		   memset-aligned memset-unaligned memset-lasx memset-lsx \
-		   memmove-unaligned memmove-lsx \
-		   memchr-aligned memchr-lsx \
-		   memrchr-generic memrchr-lsx \
-		   memcmp-aligned memcmp-lsx \
-		   rawmemchr-aligned rawmemchr-lsx \
-		   strchr-aligned strchr-unaligned strchr-lsx \
-		   strrchr-aligned strrchr-lsx \
-		   strlen-aligned strlen-unaligned strlen-lsx \
-		   strnlen-aligned strnlen-unaligned strnlen-lsx \
-		   strchrnul-aligned strchrnul-unaligned strchrnul-lsx \
+		   memset-aligned memset-unaligned memset-lsx memset-lasx \
+		   memmove-unaligned memmove-lsx memmove-lasx \
+		   memchr-aligned memchr-lsx memchr-lasx \
+		   memrchr-generic memrchr-lsx memrchr-lasx \
+		   memcmp-aligned memcmp-lsx memcmp-lasx \
+		   rawmemchr-aligned rawmemchr-lsx rawmemchr-lasx \
+		   strchr-aligned strchr-unaligned strchr-lsx strchr-lasx \
+		   strrchr-aligned strrchr-lsx strrchr-lasx \
+		   strlen-aligned strlen-unaligned strlen-lsx strlen-lasx \
+		   strnlen-aligned strnlen-unaligned strnlen-lsx strnlen-lasx \
+		   strchrnul-aligned strchrnul-unaligned strchrnul-lsx strchrnul-lasx \
 		   strncmp-aligned strncmp-unaligned strncmp-lsx \
 		   strcpy-aligned strcpy-unaligned strcpy-lsx \
 		   stpcpy-aligned stpcpy-lsx \

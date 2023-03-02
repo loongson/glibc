@@ -26,7 +26,7 @@
 # undef strchrnul
 
 # define SYMBOL_NAME strchrnul
-# include "ifunc-lsx.h"
+# include "ifunc-lasx.h"
 
 libc_ifunc_redirected (__redirect_strchrnul, __strchrnul,
                        IFUNC_SELECTOR ());
