@@ -3,17 +3,17 @@
 #include <sys/regdef.h>
 #include <sys/asm.h>
 #else
+#include <regdef.h>
 #include <sys/asm.h>
-#include <sys/regdef.h>
 #endif
 
 #if IS_IN (libc)
 
 #ifndef AS_STRCHRNUL
-#define STRCHR_NAME __strchr_lsx
+#define STRCHR	__strchr_lsx
 #endif
 
-LEAF(STRCHR_NAME)
+LEAF(STRCHR)
     .align          6
     andi            t1, a0, 0xf
     bstrins.d       a0, zero, 3, 0
@@ -54,8 +54,8 @@ L(loop):
     movfr2gr.s      t0, $f0
 
     b               L(found)
-END(STRCHR_NAME)
+END(STRCHR)
 
-libc_hidden_builtin_def (STRCHR_NAME)
+libc_hidden_builtin_def (STRCHR)
 
 #endif

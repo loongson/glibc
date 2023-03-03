@@ -9,71 +9,85 @@
 
 #if IS_IN (libc)
 
-#define MEMCHR_NAME __memchr_lsx
+#define MEMCHR	__memchr_lsx
 
-LEAF(MEMCHR_NAME)
+LEAF(MEMCHR)
     .align          6
-    beqz            a2, L(out)
-    andi            t1, a0, 0x1f
+    beqz            a2, L(ret0)
+    add.d           a3, a0, a2
+    andi            t0, a0, 0x1f
+    bstrins.d       a0, zero, 4, 0
+
+    vld             $vr0, a0, 0
+    vld             $vr1, a0, 16
+    li.d            t1, -1
     li.d            t2, 32
-    sub.d           a3, a0, t1
 
-    vld             $vr0, a3, 0
-    vld             $vr1, a3, 16
-    sub.d           t2, t2, t1
     vreplgr2vr.b    $vr2, a1
+    sll.d           t3, t1, t0
+    sub.d           t2, t2, t0
+    vseq.b          $vr0, $vr0, $vr2
 
-    sltu            t3, t2, a2
-    vxor.v          $vr0, $vr0, $vr2
-    vxor.v          $vr1, $vr1, $vr2
+    vseq.b          $vr1, $vr1, $vr2
     vmsknz.b        $vr0, $vr0
-
     vmsknz.b        $vr1, $vr1
-    sltui           t3, t3, 1
     vilvl.h         $vr0, $vr1, $vr0
+
+
     movfr2gr.s      t0, $f0
+    and             t0, t0, t3
+    bgeu            t2, a2, L(end)
+    bnez            t0, L(found)
 
-
-    sra.w           t0, t0, t1
-    orn             t1, t3, t0
-    bnez            t1, L(end)
-    sub.d           a2, a2, t2
-
-    move            a0, a3
+    addi.d          a4, a3, -1
+    bstrins.d       a4, zero, 4, 0
 L(loop):
     vld             $vr0, a0, 32
     vld             $vr1, a0, 48
+
     addi.d          a0, a0, 32
+    vseq.b          $vr0, $vr0, $vr2
+    vseq.b          $vr1, $vr1, $vr2
+    beq             a0, a4, L(out)
 
-    sltui           t3, a2, 33
-    addi.d          a2, a2, -32
-    vxor.v          $vr0, $vr0, $vr2
-    vxor.v          $vr1, $vr1, $vr2
+    vmax.bu         $vr3, $vr0, $vr1
+    vseteqz.v       $fcc0, $vr3
+    bcnez           $fcc0, L(loop)
+    vmsknz.b        $vr0, $vr0
 
+
+    vmsknz.b        $vr1, $vr1
+    vilvl.h         $vr0, $vr1, $vr0
+    movfr2gr.s      t0, $f0
+L(found):
+    ctz.w           t0, t0
+
+    add.d           a0, a0, t0
+    jr              ra
+L(ret0):
+    move            a0, zero
+    jr              ra
+
+L(out):
     vmsknz.b        $vr0, $vr0
     vmsknz.b        $vr1, $vr1
     vilvl.h         $vr0, $vr1, $vr0
     movfr2gr.s      t0, $f0
 
-
-    orn             t1, t3, t0
-    beqz            t1, L(loop)
-    addi.d          a2, a2, 32
 L(end):
-    cto.w           t0, t0
+    sub.d           t2, zero, a3
+    srl.w           t1, t1, t2
+    and             t0, t0, t1
+    ctz.w           t1, t0
 
-    sltu            t1, t0, a2
-    add.d           a0, a0, t0
-    maskeqz         a0, a0, t1
-    jr              ra
 
-L(out):
-    move            a0, zero
+    add.d           a0, a0, t1
+    maskeqz         a0, a0, t0
     jr              ra
-END(MEMCHR_NAME)
+END(MEMCHR)
 
 #ifdef _LIBC
-libc_hidden_builtin_def (MEMCHR_NAME)
+libc_hidden_builtin_def (MEMCHR)
 #endif
 
 #endif

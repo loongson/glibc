@@ -3,15 +3,15 @@
 #include <sys/regdef.h>
 #include <sys/asm.h>
 #else
+#include <regdef.h>
 #include <sys/asm.h>
-#include <sys/regdef.h>
 #endif
 
 #if IS_IN (libc)
 
-# define RAWMEMCHR_NAME __rawmemchr_lsx
+# define RAWMEMCHR __rawmemchr_lsx
 
-LEAF(RAWMEMCHR_NAME)
+LEAF(RAWMEMCHR)
     .align          6
     move            a2, a0
     bstrins.d       a0, zero, 4, 0
@@ -47,10 +47,10 @@ L(loop):
 
     add.d           a0, a0, t0
     jr              ra
-END(RAWMEMCHR_NAME)
+END(RAWMEMCHR)
 
 #ifdef _LIBC
-libc_hidden_builtin_def (RAWMEMCHR_NAME)
+libc_hidden_builtin_def (RAWMEMCHR)
 #endif
 
 #endif

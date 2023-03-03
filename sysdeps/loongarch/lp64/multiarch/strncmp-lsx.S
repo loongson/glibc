@@ -3,8 +3,8 @@
 #include <sys/regdef.h>
 #include <sys/asm.h>
 #else
+#include <regdef.h>
 #include <sys/asm.h>
-#include <sys/regdef.h>
 #endif
 
 #if IS_IN (libc)

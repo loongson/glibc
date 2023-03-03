@@ -3,15 +3,15 @@
 #include <sys/regdef.h>
 #include <sys/asm.h>
 #else
+#include <regdef.h>
 #include <sys/asm.h>
-#include <sys/regdef.h>
 #endif
 
 #if IS_IN (libc)
 
-#define MEMSET_NAME __memset_lsx
+#define MEMSET	__memset_lsx
 
-LEAF(MEMSET_NAME)
+LEAF(MEMSET)
     .align          6
     li.d            t1, 16
     move            a3, a0
@@ -116,10 +116,10 @@ L(end_less_32):
 L(end_less_16):
     vst             $vr0, a4, -16
     jr              ra
-END(MEMSET_NAME)
+END(MEMSET)
 
 #ifdef _LIBC
-libc_hidden_builtin_def (MEMSET_NAME)
+libc_hidden_builtin_def (MEMSET)
 #endif
 
 #endif
