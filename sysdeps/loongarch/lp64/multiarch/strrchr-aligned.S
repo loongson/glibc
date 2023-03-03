@@ -6,3 +6,7 @@
 #endif
 
 #include "../strrchr.S"
+
+#undef rindex
+weak_alias(STRRCHR_NAME, rindex)
+

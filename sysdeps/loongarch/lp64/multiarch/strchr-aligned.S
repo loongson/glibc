@@ -6,3 +6,5 @@
 #endif
 
 #include "../strchr.S"
+
+weak_alias (STRCHR_NAME, index)

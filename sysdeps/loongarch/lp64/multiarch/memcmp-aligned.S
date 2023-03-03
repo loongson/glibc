@@ -6,4 +6,6 @@
 #endif
 
 #include "../memcmp.S"
+# undef bcmp
+weak_alias (MEMCMP_NAME, bcmp)
 

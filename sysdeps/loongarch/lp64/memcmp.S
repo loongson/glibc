@@ -279,6 +279,3 @@ END(MEMCMP_NAME)
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMCMP_NAME)
 #endif
-
-#undef bcmp
-weak_alias (MEMCMP_NAME, bcmp)

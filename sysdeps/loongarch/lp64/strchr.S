@@ -88,8 +88,3 @@ L(_mc8_a):
 
 	jr		ra
 END(STRCHR_NAME)
-
-#ifdef _LIBC
-weak_alias (STRCHR_NAME, index)
-#endif
-
