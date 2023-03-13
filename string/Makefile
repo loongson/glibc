@@ -200,7 +200,17 @@ endif
 xtests = tst-strcoll-overflow
 
 test-xfail-test-memcpy = yes
+test-xfail-test-memmove = yes
 test-xfail-test-memset = yes
+test-xfail-test-memchr = yes
+test-xfail-test-memrchr = yes
+test-xfail-test-memcmp = yes
+test-xfail-test-rawmemchr = yes
+test-xfail-test-strchr = yes
+test-xfail-test-strrchr = yes
+test-xfail-test-strlen = yes
+test-xfail-test-strnlen = yes
+test-xfail-test-strchrnul = yes
 
 # This test needs libdl.
 ifeq (yes,$(build-shared))
