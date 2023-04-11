@@ -32,20 +32,32 @@ LEAF(STRCHR)
 
     orn             t0, t0, t1
     bne             t0, t2, L(end)
-L(loop):
-    xvld            $xr0, a0, 32
     addi.d          a0, a0, 32
+    nop
 
 
+L(loop):
+    xvld            $xr0, a0, 0
     xvxor.v         $xr2, $xr0, $xr1
     xvmin.bu        $xr0, $xr0, $xr2
     xvsetanyeqz.b   $fcc0, $xr0
-    bceqz           $fcc0, L(loop)
 
+    bcnez           $fcc0, L(loop_end)
+    xvld            $xr0, a0, 32
+    addi.d          a0, a0, 64
+    xvxor.v         $xr2, $xr0, $xr1
+
+    xvmin.bu        $xr0, $xr0, $xr2
+    xvsetanyeqz.b   $fcc0, $xr0
+    bceqz           $fcc0, L(loop)
+    addi.d          a0, a0, -32
+
+L(loop_end):
     xvmsknz.b       $xr0, $xr0
     xvpickve.w      $xr1, $xr0, 4
     vilvl.h         $vr0, $vr1, $vr0
     movfr2gr.s      t0, $f0
+
 
 L(end):
     cto.w           t0, t0
@@ -59,6 +71,7 @@ L(end):
     masknez         a0, a0, t0
 #endif
     jr              ra
+
 END(STRCHR)
 
 #ifdef _LIBC
