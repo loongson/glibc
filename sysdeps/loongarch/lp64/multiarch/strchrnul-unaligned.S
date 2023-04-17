@@ -136,11 +136,9 @@ L(_mc8_a):
 	jr		ra
 END(STRCHRNUL_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 weak_alias(STRCHRNUL_NAME, strchrnul)
 libc_hidden_builtin_def (STRCHRNUL_NAME)
-#endif
 #endif
 
 #endif

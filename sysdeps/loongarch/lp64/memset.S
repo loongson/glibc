@@ -21,11 +21,7 @@
     st.d        a1, a0, n+48;   \
     st.d        a1, a0, n+56;
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMSET_NAME, 0)
-#else
 LEAF(MEMSET_NAME)
-#endif
     .align          6
     move        t0, a0
     andi        a3, a0, 0x7
@@ -166,8 +162,6 @@ L(short_0):
 
 END(MEMSET_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMSET_NAME)
-#endif
 #endif

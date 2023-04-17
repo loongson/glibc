@@ -107,10 +107,8 @@ strlen_loop_noascii:
 	jr		ra
 END(STRLEN)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (STRLEN)
-#endif
 #endif
 
 #endif

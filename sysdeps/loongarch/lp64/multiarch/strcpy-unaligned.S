@@ -190,10 +190,8 @@ strcpy_page_cross:
 	beqz		has_nul, strcpy_page_cross_ok
 	b		strcpy_end
 END(STRCPY)
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (STRCPY)
-#endif
 #endif
 
 #endif

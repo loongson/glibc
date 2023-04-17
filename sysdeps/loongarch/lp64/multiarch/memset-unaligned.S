@@ -33,12 +33,7 @@
 //2nd var: int val  $5   a1
 //3rd var: size_t num  $6  a2
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMSET_NAME, 0)
-#else
 LEAF(MEMSET_NAME)
-#endif
-
 	.align	6
 	bstrins.d a1, a1, 15, 8
 	add.d	  t7, a0, a2
@@ -168,10 +163,8 @@ end_0_8_unalign:
 
 END(MEMSET_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMSET_NAME)
-#endif
 #endif
 
 #endif

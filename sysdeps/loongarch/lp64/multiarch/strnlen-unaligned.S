@@ -136,10 +136,8 @@ L(_hit_limit):
     move	len, limit
     jr		ra
 END(STRNLEN)
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (STRNLEN)
-#endif
 #endif
 
 #endif

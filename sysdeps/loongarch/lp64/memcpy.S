@@ -35,29 +35,18 @@
     st.d        t6, reg, n+48; \
     st.d        t7, reg, n+56;
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMMOVE_NAME, 0)
-#else
 LEAF(MEMMOVE_NAME)
-#endif
-
     .align      6
     sub.d       t0, a0, a1
     bltu        t0, a2, L(copy_back)
 
 END(MEMMOVE_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMMOVE_NAME)
 #endif
-#endif
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMCPY_NAME, 0)
-#else
 LEAF(MEMCPY_NAME)
-#endif
 
     srai.d      a3, a2, 4
     beqz        a3, L(short_data)  # less than 16 bytes
@@ -811,8 +800,6 @@ L(back_end):
 
 END(MEMCPY_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMCPY_NAME)
-#endif
 #endif

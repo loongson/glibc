@@ -123,10 +123,8 @@ L(_mc8_a):
 	jr		ra
 END(STRCHR_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (STRCHR_NAME)
-#endif
 #endif
 
 #endif

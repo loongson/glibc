@@ -100,11 +100,7 @@
 	LD_64(a4, -1024); \
 	ST_64(a3, -1024);
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMMOVE_NAME, 0)
-#else
 LEAF(MEMMOVE_NAME)
-#endif
 
 //1st var: dest ptr: void *str1 $r4 a0
 //2nd var: src  ptr: void *str2 $r5 a1
@@ -469,10 +465,8 @@ end_unalign_proc_back:
 
 END(MEMMOVE_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMMOVE_NAME)
-#endif
 #endif
 
 #endif

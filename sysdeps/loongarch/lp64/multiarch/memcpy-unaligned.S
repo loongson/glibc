@@ -31,11 +31,7 @@
 	st.d    t6, reg, n+48; \
 	st.d    t7, reg, n+56;
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMCPY_NAME, 0)
-#else
 LEAF(MEMCPY_NAME)
-#endif
 
 //1st var: dst ptr: void *a1 $r4 a0
 //2nd var: src ptr: void *a2 $r5 a1
@@ -250,10 +246,8 @@ end_0_8_unalign:
 
 END(MEMCPY_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMCPY_NAME)
-#endif
 #endif
 
 #endif

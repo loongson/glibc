@@ -248,10 +248,8 @@ strncmp_ret0:
    then exchange(src1,src2).  */
 
 END(STRNCMP)
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (STRNCMP)
-#endif
 #endif
 
 #endif

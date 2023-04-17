@@ -11,11 +11,7 @@
 #define MEMCHR_NAME memchr
 #endif
 
-#ifdef ANDROID_CHANGES
-LEAF(MEMCHR_NAME, 0)
-#else
 LEAF(MEMCHR_NAME)
-#endif
     .align      6
     beqz        a2, L(out)
     andi        t1, a0, 0x7
@@ -92,8 +88,6 @@ L(out):
     jr          ra
 END(MEMCHR_NAME)
 
-#ifndef ANDROID_CHANGES
 #ifdef _LIBC
 libc_hidden_builtin_def (MEMCHR_NAME)
-#endif
 #endif
