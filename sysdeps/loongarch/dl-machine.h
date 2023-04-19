@@ -290,9 +290,21 @@ elf_machine_runtime_setup (struct link_map *l, struct r_scope_elem *scope[],
   if (l->l_info[DT_JMPREL])
     {
       extern void _dl_runtime_resolve (void)
-	__attribute__ ((visibility ("hidden")));
+		__attribute__ ((visibility ("hidden")));
+      extern void _dl_runtime_resolve_lasx (void)
+		__attribute__ ((visibility ("hidden")));
+      extern void _dl_runtime_resolve_lsx (void)
+		__attribute__ ((visibility ("hidden")));
+
       ElfW (Addr) *gotplt = (ElfW (Addr) *) D_PTR (l, l_info[DT_PLTGOT]);
-      gotplt[0] = (ElfW (Addr)) & _dl_runtime_resolve;
+
+      if (SUPPORT_LASX)
+	gotplt[0] = (ElfW(Addr)) &_dl_runtime_resolve_lasx;
+      else if (SUPPORT_LSX)
+	gotplt[0] = (ElfW(Addr)) &_dl_runtime_resolve_lsx;
+      else
+	gotplt[0] = (ElfW(Addr)) &_dl_runtime_resolve;
+
       gotplt[1] = (ElfW (Addr)) l;
     }
 #endif
