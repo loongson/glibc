@@ -28,7 +28,7 @@
   other than the PRESERVED state.  */
 
 	.text
-LEAF (__setcontext)
+LEAF (__setcontext, 3)
 
 	addi.d		sp, sp, -16
 	st.d		a0, sp, 0	/* Save ucp to stack */
@@ -82,7 +82,7 @@ LEAF (__setcontext)
 PSEUDO_END (__setcontext)
 weak_alias (__setcontext, setcontext)
 
-LEAF (__start_context)
+LEAF (__start_context, 3)
 
 	/* Terminate call stack by noting ra == 0.  Happily, s0 == 0 here.  */
 	cfi_register (1, 23)

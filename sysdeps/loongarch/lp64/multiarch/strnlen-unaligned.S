@@ -63,9 +63,8 @@
 
 /* size_t strnlen (const char *s1,size_t maxlen); */
 
-LEAF(STRNLEN)
+LEAF(STRNLEN, 4)
 
-    .align	4
     beqz        limit, L(_hit_limit)
     lu12i.w     zeroones, 0x01010
     lu12i.w     sevenf, 0x7f7f7

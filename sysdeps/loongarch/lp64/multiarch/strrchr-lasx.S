@@ -11,8 +11,7 @@
 
 #define STRRCHR __strrchr_lasx
 
-LEAF(STRRCHR)
-    .align          6
+LEAF(STRRCHR, 6)
     andi            t1, a0, 0x3f
     bstrins.d       a0, zero, 5, 0
     xvld            $xr0, a0, 0

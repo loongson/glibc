@@ -29,7 +29,7 @@
 # define FRAME_SIZE (-((-10 * SZREG - 8 * 256) & ALMASK))
 #endif
 
-ENTRY (_dl_runtime_resolve)
+ENTRY (_dl_runtime_resolve, 3)
   # Save arguments to stack.
 
 #ifdef __loongarch64

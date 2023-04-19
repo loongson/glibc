@@ -11,8 +11,7 @@
 #define MEMCHR_NAME memchr
 #endif
 
-LEAF(MEMCHR_NAME)
-    .align      6
+LEAF(MEMCHR_NAME, 6)
     beqz        a2, L(out)
     andi        t1, a0, 0x7
     lu12i.w     a3, 0x01010

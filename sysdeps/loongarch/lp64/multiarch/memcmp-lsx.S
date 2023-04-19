@@ -10,11 +10,10 @@
 #if IS_IN (libc)
 
 #define MEMCMP  __memcmp_lsx
-
 L(magic_num):
-    .align          6
-    .dword          0x0706050403020100
-    .dword          0x0f0e0d0c0b0a0908
+    .align		6
+    .dword		0x0706050403020100
+    .dword		0x0f0e0d0c0b0a0908
     nop
     nop
 ENTRY_NO_ALIGN(MEMCMP)

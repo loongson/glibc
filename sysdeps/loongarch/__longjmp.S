@@ -20,7 +20,7 @@
 #include <pointer_guard.h>
 #include <sys/asm.h>
 
-ENTRY (__longjmp)
+ENTRY (__longjmp, 3)
 #ifdef PTR_MANGLE
 	REG_L t0, a0, 0*SZREG
 	PTR_DEMANGLE (ra, t0, t1)

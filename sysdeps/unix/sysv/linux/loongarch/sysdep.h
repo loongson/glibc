@@ -33,7 +33,7 @@
    errors by setting a0 to a value between -1 and -4095.  */
 #undef PSEUDO
 #define PSEUDO(name, syscall_name, args) \
-  ENTRY (name); \
+  ENTRY (name, 3); \
   li.d a7, SYS_ify (syscall_name); \
   syscall 0; \
   li.d a7, -4096; \
@@ -73,7 +73,7 @@
 /* Performs a system call, not setting errno.  */
 #undef PSEUDO_NEORRNO
 #define PSEUDO_NOERRNO(name, syscall_name, args) \
-  ENTRY (name); \
+  ENTRY (name, 3); \
   li.d a7, SYS_ify (syscall_name); \
   syscall 0;
 

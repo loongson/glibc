@@ -13,8 +13,7 @@
 
 /* size_t strlen(const char *s1); */
 
-LEAF(STRLEN)
-    .align          6
+LEAF(STRLEN, 6)
     move            a1, a0
     bstrins.d       a0, zero, 4, 0
     li.d            t1, -1

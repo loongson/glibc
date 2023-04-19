@@ -13,8 +13,7 @@
 
 /* char * strchr (const char *s1, int c); */
 
-LEAF(STRCHR_NAME)
-	.align		6
+LEAF(STRCHR_NAME, 6)
 	slli.d		t1, a0, 3
 	bstrins.d	a0, zero, 2, 0
 	lu12i.w		a2, 0x01010

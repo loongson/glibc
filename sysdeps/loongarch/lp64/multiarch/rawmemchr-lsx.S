@@ -11,8 +11,7 @@
 
 # define RAWMEMCHR __rawmemchr_lsx
 
-LEAF(RAWMEMCHR)
-    .align          6
+LEAF(RAWMEMCHR, 6)
     move            a2, a0
     bstrins.d       a0, zero, 4, 0
     vld             $vr0, a0, 0

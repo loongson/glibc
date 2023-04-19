@@ -30,7 +30,7 @@
 /* int clone(int (*fn)(void *arg), void *child_stack, int flags, void *arg,
    void *parent_tidptr, void *tls, void *child_tidptr) */
 
-ENTRY (__clone)
+ENTRY (__clone, 3)
 
 	/* Align stack to 16.  */
 	BSTRINS		a1, zero, 3, 0
@@ -71,7 +71,7 @@ END (__clone)
 /* Load up the arguments to the function.  Put this block of code in
    its own function so that we can terminate the stack trace with our
    debug info.  */
-ENTRY (__thread_start)
+ENTRY (__thread_start, 3)
 L (thread_start):
 
 /* Terminate call stack by noting ra is undefined.  Use a dummy
@@ -90,7 +90,7 @@ L (thread_start):
 	LI		a7, __NR_exit
 	syscall		0
 
-	END (__thread_start)
+END (__thread_start)
 
 libc_hidden_def (__clone)
 weak_alias (__clone, clone)

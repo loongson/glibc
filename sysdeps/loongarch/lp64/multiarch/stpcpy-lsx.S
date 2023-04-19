@@ -12,9 +12,9 @@
 #define STPCPY __stpcpy_lsx
 
 L(magic_num):
-    .align          6
-    .dword          0x0706050403020100
-    .dword          0x0f0e0d0c0b0a0908
+    .align		6
+    .dword		0x0706050403020100
+    .dword		0x0f0e0d0c0b0a0908
 ENTRY_NO_ALIGN(STPCPY)
     pcaddi          t0, -4
     andi            a4, a1, 0xf

@@ -22,14 +22,14 @@
 # define errno __libc_errno
 #endif
 
-ENTRY (__syscall_error)
+ENTRY (__syscall_error, 3)
 /* Fall through to __syscall_set_errno */
 END (__syscall_error)
 
 /* Non-standard calling convention: argument in a0, return address in t0,
    and clobber only t1.
  */
-ENTRY (__syscall_set_errno)
+ENTRY (__syscall_set_errno, 3)
 
 /* We got here because a0 < 0, but only codes in the range [-4095, -1]
    represent errors.  Otherwise, just return the result normally.

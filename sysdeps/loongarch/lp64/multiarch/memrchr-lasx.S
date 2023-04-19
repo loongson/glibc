@@ -13,8 +13,7 @@
 #define MEMRCHR	__memrchr_lasx
 #endif
 
-LEAF(MEMRCHR)
-    .align          6
+LEAF(MEMRCHR, 6)
     beqz            a2, L(ret0)
     addi.d          a2, a2, -1
     add.d           a3, a0, a2

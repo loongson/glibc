@@ -73,8 +73,7 @@
 
 /* int strcmp (const char *s1, const char *s2); */
 
-LEAF(STRCMP_NAME)
-	.align		4
+LEAF(STRCMP_NAME, 4)
 
 	xor		tmp1, src1, src2
     	lu12i.w     	zeroones, 0x01010

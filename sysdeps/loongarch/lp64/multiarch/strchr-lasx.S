@@ -13,8 +13,7 @@
 #define STRCHR	__strchr_lasx
 #endif
 
-LEAF(STRCHR)
-    .align          6
+LEAF(STRCHR, 6)
     andi            t1, a0, 0x1f
     bstrins.d       a0, zero, 4, 0
     xvld            $xr0, a0, 0

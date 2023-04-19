@@ -30,7 +30,7 @@
 /* int clone3(struct clone_args *cl_args, size_t size,
    int (*func)(void *arg), void *arg); */
 
-ENTRY (__clone3)
+ENTRY (__clone3, 3)
 
 	/* Sanity check arguments.  */
 	beqz		a0, L (invalid)	/* No NULL cl_args pointer.  */
@@ -58,7 +58,7 @@ END (__clone3)
 /* Load up the arguments to the function.  Put this block of code in
    its own function so that we can terminate the stack trace with our
    debug info.  */
-ENTRY (__thread_start3)
+ENTRY (__thread_start3, 3)
 L (thread_start3):
 
 /* Terminate call stack by noting ra is undefined.  Use a dummy

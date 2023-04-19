@@ -20,16 +20,16 @@
 #include <pointer_guard.h>
 #include <sys/asm.h>
 
-ENTRY (_setjmp)
+ENTRY (_setjmp, 3)
 	li.w		a1,0
 	b		HIDDEN_JUMPTARGET (__sigsetjmp)
 END (_setjmp)
 
-ENTRY (setjmp)
+ENTRY (setjmp, 3)
 	li.w		a1,1
 END (setjmp)
 
-ENTRY (__sigsetjmp)
+ENTRY (__sigsetjmp, 3)
 #ifdef PTR_MANGLE
 	PTR_MANGLE (t0, ra, t1)
 	REG_S t0, a0, 0*SZREG

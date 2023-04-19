@@ -11,8 +11,7 @@
 #define MEMCMP_NAME memcmp
 #endif
 
-LEAF(MEMCMP_NAME)
-    .align      6
+LEAF(MEMCMP_NAME, 6)
     beqz        a2, L(ret)
     andi        a4, a1, 0x7
     andi        a3, a0, 0x7

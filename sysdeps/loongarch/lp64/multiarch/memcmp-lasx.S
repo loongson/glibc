@@ -11,8 +11,7 @@
 
 #define MEMCMP  __memcmp_lasx
 
-LEAF(MEMCMP)
-    .align          6
+LEAF(MEMCMP, 6)
     li.d            t2, 32
     add.d           a3, a0, a2
     add.d           a4, a1, a2

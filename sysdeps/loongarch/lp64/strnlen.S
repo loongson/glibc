@@ -15,8 +15,7 @@
 #. first load with t1 != 0, need to adjust t5;
 #. return the less one of both strlen(s) and a1;
 
-LEAF(STRNLEN)
-	.align 6
+LEAF(STRNLEN, 6)
 	beqz		a1, L(out)
 	lu12i.w		a2, 0x01010
 	andi		t1, a0, 0x7

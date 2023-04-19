@@ -11,8 +11,7 @@
 #define STPCPY_NAME __stpcpy
 #endif
 
-LEAF(STPCPY_NAME)
-    .align      6
+LEAF(STPCPY_NAME, 6)
     andi        a3, a0, 0x7
     beqz        a3, L(dest_align)
     sub.d       a5, a1, a3

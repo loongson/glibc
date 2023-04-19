@@ -20,7 +20,7 @@
 
 /* int swapcontext (ucontext_t *oucp, const ucontext_t *ucp) */
 
-LEAF (__swapcontext)
+LEAF (__swapcontext, 3)
 	ori		a2, sp, 0		/* Save sp to a2 */
 	addi.d		sp, sp, -16
 	st.d		a1, sp, 0

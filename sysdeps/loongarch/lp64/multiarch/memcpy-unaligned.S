@@ -31,7 +31,7 @@
 	st.d    t6, reg, n+48; \
 	st.d    t7, reg, n+56;
 
-LEAF(MEMCPY_NAME)
+LEAF(MEMCPY_NAME, 3)
 
 //1st var: dst ptr: void *a1 $r4 a0
 //2nd var: src ptr: void *a2 $r5 a1

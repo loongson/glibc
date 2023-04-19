@@ -19,8 +19,7 @@
 #define src1	a0
 #define	src2	a1
 #define result	v0
-LEAF(STRCMP_NAME)
-    .align	6
+LEAF(STRCMP_NAME, 6)
     xor         a4, src1, src2
     lu12i.w     t5, 0x01010
     lu12i.w     t6, 0x7f7f7

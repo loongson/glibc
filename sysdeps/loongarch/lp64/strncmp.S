@@ -13,8 +13,7 @@
 
 /* int strncmp (const char *s1, const char *s2); */
 
-LEAF(STRNCMP)
-    .align      6
+LEAF(STRNCMP, 6)
     beqz        a2, L(ret0)
     xor         a4, a0, a1
     lu12i.w     t5, 0x01010

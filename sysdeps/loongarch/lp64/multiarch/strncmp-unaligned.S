@@ -60,8 +60,7 @@
 
 /* int strncmp (const char *s1, const char *s2); */
 
-LEAF(STRNCMP)
-	.align		4
+LEAF(STRNCMP, 4)
 	beqz		limit, strncmp_ret0
 
 	xor		tmp1, src1, src2

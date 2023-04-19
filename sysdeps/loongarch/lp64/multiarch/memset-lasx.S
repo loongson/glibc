@@ -11,8 +11,7 @@
 
 #define MEMSET	__memset_lasx
 
-LEAF(MEMSET)
-    .align          6
+LEAF(MEMSET, 6)
     li.d            t1, 32
     move            a3, a0
     xvreplgr2vr.b   $xr0, a1

@@ -31,8 +31,7 @@
 
 /* size_t strlen (const char *s1); */
 
-LEAF(STRLEN)
-	.align		5
+LEAF(STRLEN, 5)
 	nor		t4, zero, zero
 	lu12i.w		a2, 0x01010
 	andi		t5, a0, 0x7

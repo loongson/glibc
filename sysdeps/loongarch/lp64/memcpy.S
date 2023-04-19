@@ -35,8 +35,7 @@
     st.d        t6, reg, n+48; \
     st.d        t7, reg, n+56;
 
-LEAF(MEMMOVE_NAME)
-    .align      6
+LEAF(MEMMOVE_NAME, 6)
     sub.d       t0, a0, a1
     bltu        t0, a2, L(copy_back)
 
@@ -46,7 +45,7 @@ END(MEMMOVE_NAME)
 libc_hidden_builtin_def (MEMMOVE_NAME)
 #endif
 
-LEAF(MEMCPY_NAME)
+LEAF_NO_ALIGN(MEMCPY_NAME)
 
     srai.d      a3, a2, 4
     beqz        a3, L(short_data)  # less than 16 bytes

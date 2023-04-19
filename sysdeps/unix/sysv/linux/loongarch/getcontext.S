@@ -21,7 +21,7 @@
 /* int getcontext (ucontext_t *ucp) */
 
 	.text
-LEAF (__getcontext)
+LEAF (__getcontext, 3)
 	SAVE_INT_REG (ra,   1, a0)
 	SAVE_INT_REG (sp,   3, a0)
 	SAVE_INT_REG (zero, 4, a0) /* return 0 by overwriting a0.  */

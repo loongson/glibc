@@ -11,8 +11,7 @@
 
 #define MEMCHR	__memchr_lsx
 
-LEAF(MEMCHR)
-    .align          6
+LEAF(MEMCHR, 6)
     beqz            a2, L(ret0)
     add.d           a3, a0, a2
     andi            t0, a0, 0x1f

@@ -21,8 +21,7 @@
     st.d        a1, a0, n+48;   \
     st.d        a1, a0, n+56;
 
-LEAF(MEMSET_NAME)
-    .align          6
+LEAF(MEMSET_NAME, 6)
     move        t0, a0
     andi        a3, a0, 0x7
     li.w        t6, 16

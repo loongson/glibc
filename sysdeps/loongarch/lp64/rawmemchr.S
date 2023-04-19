@@ -12,8 +12,7 @@
 #endif
 
 
-LEAF(RAWMEMCHR_NAME)
-    .align      6
+LEAF(RAWMEMCHR_NAME, 6)
     andi        t1, a0, 0x7
     bstrins.d   a0, zero, 2, 0
     lu12i.w     a2, 0x01010

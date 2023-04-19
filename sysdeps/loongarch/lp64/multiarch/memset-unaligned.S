@@ -33,8 +33,7 @@
 //2nd var: int val  $5   a1
 //3rd var: size_t num  $6  a2
 
-LEAF(MEMSET_NAME)
-	.align	6
+LEAF(MEMSET_NAME, 6)
 	bstrins.d a1, a1, 15, 8
 	add.d	  t7, a0, a2
 	bstrins.d a1, a1, 31, 16

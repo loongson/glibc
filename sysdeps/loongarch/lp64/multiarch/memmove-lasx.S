@@ -17,8 +17,7 @@
 #define MEMMOVE_NAME __memmove_lasx
 #endif
 
-LEAF(MEMCPY_NAME)
-    .align          6
+LEAF(MEMCPY_NAME, 6)
 
     li.d            t0, 32
     add.d           a3, a0, a2
@@ -83,8 +82,7 @@ L(less_1bytes):
     jr              ra
 END(MEMCPY_NAME)
 
-LEAF(MEMMOVE_NAME)
-    .align          6
+LEAF(MEMMOVE_NAME, 6)
 
     li.d            t0, 32
     add.d           a3, a0, a2

@@ -11,8 +11,7 @@
 #define STRCPY  strcpy
 #endif
 
-LEAF(STRCPY)
-    .align      6
+LEAF(STRCPY, 6)
     andi        a3, a0, 0x7
     move        a2, a0
     beqz        a3, L(dest_align)

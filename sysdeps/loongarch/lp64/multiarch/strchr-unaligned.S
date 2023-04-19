@@ -38,8 +38,7 @@
 #define STRCHR_NAME __strchr_unaligned
 
 /* char * strchr (const char *s1, int c); */
-LEAF(STRCHR_NAME)
-	.align		6
+LEAF(STRCHR_NAME, 6)
 
 	li.w		t4, 0x7
 	lu12i.w		a2, 0x01010

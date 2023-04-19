@@ -61,8 +61,7 @@
 
 /* int strcpy (const char *s1, const char *s2); */
 
-LEAF(STRCPY)
-	.align		4
+LEAF(STRCPY, 4)
     	move        	dest_backup, dest
     	lu12i.w     	zeroones, 0x01010
     	lu12i.w     	sevenf, 0x7f7f7

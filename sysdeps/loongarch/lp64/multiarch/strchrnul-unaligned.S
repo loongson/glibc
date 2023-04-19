@@ -46,8 +46,7 @@
 
 /* char * strchrnul (const char *s1, int c); */
 
-LEAF(STRCHRNUL_NAME)
-	.align		6
+LEAF(STRCHRNUL_NAME, 6)
 	li.w		t4, 0x7
 	lu12i.w		a2, 0x01010
 	bstrins.d	a1, a1, 15, 8

@@ -100,7 +100,7 @@
 	LD_64(a4, -1024); \
 	ST_64(a3, -1024);
 
-LEAF(MEMMOVE_NAME)
+LEAF(MEMMOVE_NAME, 3)
 
 //1st var: dest ptr: void *str1 $r4 a0
 //2nd var: src  ptr: void *str2 $r5 a1

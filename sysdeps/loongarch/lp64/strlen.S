@@ -11,8 +11,7 @@
 #define STRLEN	strlen
 #endif
 
-LEAF(STRLEN)
-	.align 6
+LEAF(STRLEN, 6)
 	move		a1, a0
 	bstrins.d	a0, zero, 2, 0
 	lu12i.w		a2, 0x01010

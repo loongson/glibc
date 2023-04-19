@@ -13,8 +13,7 @@
 
 /* size_t strnlen (const char *s1, size_t maxlen); */
 
-LEAF(STRNLEN)
-    .align          6
+LEAF(STRNLEN, 6)
     beqz            a1, L(ret0)
     andi            t1, a0, 0x3f
     li.d            t3, 65

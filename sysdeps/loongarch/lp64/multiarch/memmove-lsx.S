@@ -12,8 +12,7 @@
 #define MEMCPY_NAME __memcpy_lsx
 #define MEMMOVE_NAME __memmove_lsx
 
-LEAF(MEMCPY_NAME)
-    .align          6
+LEAF(MEMCPY_NAME, 6)
     li.d            t6, 16
     add.d           a3, a0, a2
     add.d           a4, a1, a2
@@ -83,7 +82,7 @@ L(less_1bytes):
     nop
 END(MEMCPY_NAME)
 
-LEAF(MEMMOVE_NAME)
+LEAF(MEMMOVE_NAME, 6)
     li.d            t6, 16
     add.d           a3, a0, a2
     add.d           a4, a1, a2

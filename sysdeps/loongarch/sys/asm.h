@@ -37,15 +37,15 @@
 #define FREG_S fst.d
 
 /* Declare leaf routine.  */
-#define LEAF(symbol)			\
+#define LEAF(symbol, aln)		\
 	.text;				\
 	.globl symbol;			\
-	.align 3;			\
+	.align aln;			\
 	.type symbol, @function;	\
 symbol: \
 	cfi_startproc;
 
-#define ENTRY(symbol) LEAF (symbol)
+#define ENTRY(symbol, aln) LEAF (symbol, aln)
 
 #define	LEAF_NO_ALIGN(symbol)		\
 	.text;				\
