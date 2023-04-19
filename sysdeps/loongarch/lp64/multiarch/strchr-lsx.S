@@ -56,8 +56,6 @@ L(loop):
     b               L(found)
 END(STRCHR_NAME)
 
-#ifndef AS_STRCHRNUL
 libc_hidden_builtin_def (STRCHR_NAME)
-#endif
 
 #endif
