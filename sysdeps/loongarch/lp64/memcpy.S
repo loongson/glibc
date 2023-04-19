@@ -15,10 +15,6 @@
 #define MEMMOVE_NAME memmove
 #endif
 
-#ifndef L
-#define L(label) .L ## label
-#endif
-
 #define LD_64(reg, n)          \
     ld.d        t0, reg, n;    \
     ld.d        t1, reg, n+8;  \

@@ -11,10 +11,6 @@
 #define MEMSET_NAME memset
 #endif
 
-#ifndef L
-#define L(label) .L ## label
-#endif
-
 #define ST_64(n)                \
     st.d        a1, a0, n;      \
     st.d        a1, a0, n+8;    \
