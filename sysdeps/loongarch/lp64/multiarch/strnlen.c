@@ -26,7 +26,7 @@
 # undef strnlen
 
 # define SYMBOL_NAME strnlen
-# include "ifunc-strlen.h"
+# include "ifunc-strchr.h"
 
 libc_ifunc_redirected (__redirect_strnlen, __strnlen, IFUNC_SELECTOR ());
 weak_alias (__strnlen, strnlen);

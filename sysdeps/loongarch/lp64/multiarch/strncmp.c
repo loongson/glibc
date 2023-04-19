@@ -1,6 +1,6 @@
-/* Common definition for str{,n}len implementation.
+/* Multiple versions of strncmp.
    All versions must be listed in ifunc-impl-list.c.
-   Copyright (C) 2017-2022 Free Software Foundation, Inc.
+   Copyright (C) 2017-2018 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -15,23 +15,21 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
+   <http://www.gnu.org/licenses/>.  */
 
-#include <init-arch.h>
+/* Define multiple versions only for the definition in libc.  */
+#if IS_IN (libc)
+# define strncmp __redirect_strncmp
+# include <string.h>
+# undef strncmp
 
-extern __typeof (REDIRECT_NAME) OPTIMIZE (lsx) attribute_hidden;
-extern __typeof (REDIRECT_NAME) OPTIMIZE (aligned) attribute_hidden;
-extern __typeof (REDIRECT_NAME) OPTIMIZE (unaligned) attribute_hidden;
+# define SYMBOL_NAME strncmp
+# include "ifunc-strchr.h"
 
-static inline void *
-IFUNC_SELECTOR (void)
-{
-  INIT_ARCH();
+libc_ifunc_redirected (__redirect_strncmp, strncmp, IFUNC_SELECTOR ());
 
-  if (SUPPORT_LSX)
-    return OPTIMIZE (lsx);
-  if (SUPPORT_UAL)
-    return OPTIMIZE (unaligned);
-  else
-    return OPTIMIZE (aligned);
-}
+# ifdef SHARED
+__hidden_ver1 (strncmp, __GI_strncmp, __redirect_strncmp)
+  __attribute__ ((visibility ("hidden")));
+# endif
+#endif
