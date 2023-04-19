@@ -13,5 +13,6 @@ sysdep_routines += memcpy-aligned memcpy-unaligned memcpy-lasx \
 		   strchrnul-aligned strchrnul-unaligned strchrnul-lsx \
 		   strncmp-aligned strncmp-unaligned strncmp-lsx \
 		   strcpy-aligned strcpy-unaligned strcpy-lsx \
-		   stpcpy-aligned stpcpy-lsx
+		   stpcpy-aligned stpcpy-lsx \
+		   strcmp-aligned strcmp-unaligned strcmp-lsx
 endif
