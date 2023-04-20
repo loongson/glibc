@@ -26,14 +26,11 @@
 # define SYMBOL_NAME strrchr
 # include "ifunc-memchr.h"
 
-libc_ifunc_redirected (__redirect_strrchr, __new_strrchr,
-		       IFUNC_SELECTOR ());
-weak_alias(__new_strrchr, rindex)
+libc_ifunc_redirected (__redirect_strrchr, strrchr, IFUNC_SELECTOR ());
+weak_alias (strrchr, rindex)
 # ifdef SHARED
-__hidden_ver1 (__new_strrchr, __GI_strrchr, __redirect_strrchr)
-  __attribute__ ((visibility ("hidden")));
+__hidden_ver1 (strrchr, __GI_strrchr, __redirect_strrchr)
+  __attribute__ ((visibility ("hidden"))) __attribute_copy__ (strrchr);
 # endif
 
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_strrchr, strrchr, GLIBC_2_27);
 #endif

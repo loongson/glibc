@@ -26,16 +26,14 @@
 # define SYMBOL_NAME memcmp
 # include "ifunc-memchr.h"
 
-libc_ifunc_redirected (__redirect_memcmp, __new_memcmp,
+libc_ifunc_redirected (__redirect_memcmp, memcmp,
 		       IFUNC_SELECTOR ());
 # undef bcmp
-weak_alias (__new_memcmp, bcmp)
+weak_alias (memcmp, bcmp)
 
 # ifdef SHARED
-__hidden_ver1 (__new_memcmp, __GI_memcmp, __redirect_memcmp)
-  __attribute__ ((visibility ("hidden")));
+__hidden_ver1 (memcmp, __GI_memcmp, __redirect_memcmp)
+  __attribute__ ((visibility ("hidden"))) __attribute_copy__ (memcmp);
 # endif
 
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_memcmp, memcmp, GLIBC_2_27);
 #endif

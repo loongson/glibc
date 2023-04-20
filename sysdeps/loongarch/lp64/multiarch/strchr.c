@@ -26,14 +26,11 @@
 # define SYMBOL_NAME strchr
 # include "ifunc-lasx.h"
 
-libc_ifunc_redirected (__redirect_strchr, __new_strchr,
-		       IFUNC_SELECTOR ());
-weak_alias(__new_strchr, index)
+libc_ifunc_redirected (__redirect_strchr, strchr, IFUNC_SELECTOR ());
+weak_alias(strchr, index)
 # ifdef SHARED
-__hidden_ver1 (__new_strchr, __GI_strchr, __redirect_strchr)
-  __attribute__ ((visibility ("hidden")));
+__hidden_ver1 (strchr, __GI_strchr, __redirect_strchr)
+  __attribute__ ((visibility ("hidden"))) __attribute_copy__ (strchr);
 # endif
 
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_strchr, strchr, GLIBC_2_27);
 #endif

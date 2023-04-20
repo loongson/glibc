@@ -26,14 +26,12 @@
 # define SYMBOL_NAME memcpy
 # include "ifunc-lasx.h"
 
-libc_ifunc_redirected (__redirect_memcpy, __new_memcpy,
+libc_ifunc_redirected (__redirect_memcpy, memcpy,
 		       IFUNC_SELECTOR ());
 
 # ifdef SHARED
-__hidden_ver1 (__new_memcpy, __GI_memcpy, __redirect_memcpy)
-  __attribute__ ((visibility ("hidden")));
+__hidden_ver1 (memcpy, __GI_memcpy, __redirect_memcpy)
+  __attribute__ ((visibility ("hidden"))) __attribute_copy__ (memcmp);
 # endif
 
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_memcpy, memcpy, GLIBC_2_27);
 #endif

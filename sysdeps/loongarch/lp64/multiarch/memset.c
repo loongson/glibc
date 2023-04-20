@@ -26,14 +26,12 @@
 # define SYMBOL_NAME memset
 # include "ifunc-lasx.h"
 
-libc_ifunc_redirected (__redirect_memset, __new_memset,
+libc_ifunc_redirected (__redirect_memset, memset,
 		       IFUNC_SELECTOR ());
 
 # ifdef SHARED
-__hidden_ver1 (__new_memset, __GI_memset, __redirect_memset)
-  __attribute__ ((visibility ("hidden")));
+__hidden_ver1 (memset, __GI_memset, __redirect_memset)
+  __attribute__ ((visibility ("hidden"))) __attribute_copy__ (memset);
 # endif
 
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_memset, memset, GLIBC_2_27);
 #endif
