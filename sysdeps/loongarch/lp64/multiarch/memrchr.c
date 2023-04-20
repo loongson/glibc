@@ -26,14 +26,8 @@
 # define SYMBOL_NAME memrchr
 # include "ifunc-memrchr.h"
 
-libc_ifunc_redirected (__redirect_memrchr, __new_memrchr,
-		       IFUNC_SELECTOR ());
+libc_ifunc_redirected (__redirect_memrchr, __memrchr, IFUNC_SELECTOR ());
+libc_hidden_def (__memrchr)
+weak_alias (__memrchr, memrchr)
 
-# ifdef SHARED
-__hidden_ver1 (__new_memrchr, __GI_memrchr, __redirect_memrchr)
-  __attribute__ ((visibility ("hidden")));
-# endif
-
-# include <shlib-compat.h>
-versioned_symbol (libc, __new_memrchr, memrchr, GLIBC_2_27);
 #endif
