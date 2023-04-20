@@ -16,8 +16,6 @@
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
-#if HAVE_TUNABLES
-# define TUNABLE_NAMESPACE cpu
 # include <stdbool.h>
 # include <stdint.h>
 # include <unistd.h>		/* Get STDOUT_FILENO for _dl_printf.  */
@@ -90,5 +88,3 @@ TUNABLE_CALLBACK (set_hwcaps) (tunable_val_t *valp)
 
   GLRO (dl_hwcap) &= hwcap;
 }
-
-#endif

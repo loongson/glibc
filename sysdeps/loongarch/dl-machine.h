@@ -22,11 +22,8 @@
 
 #define ELF_MACHINE_NAME "LoongArch"
 
-#if HAVE_TUNABLES
-#define TUNABLE_NAMESPACE cpu
 #include <elf/dl-tunables.h>
   extern void TUNABLE_CALLBACK (set_hwcaps) (tunable_val_t *) attribute_hidden;
-#endif
 
 #include <entry.h>
 #include <elf/elf.h>
@@ -72,9 +69,8 @@ dl_platform_init (void)
 
 #ifdef SHARED
 
-#if HAVE_TUNABLES
-  TUNABLE_GET (hwcaps, tunable_val_t *, TUNABLE_CALLBACK (set_hwcaps));
-#endif
+  TUNABLE_GET (glibc, cpu, hwcaps, uint64_t, TUNABLE_CALLBACK (set_hwcaps));
+
   /* init_cpu_features has been called early from __libc_start_main in
      static executable.  */
   init_cpu_features (&GLRO(dl_larch_cpu_features));
