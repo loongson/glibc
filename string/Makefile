@@ -199,9 +199,6 @@ endif
 # This test allocates a lot of memory and can run for a long time.
 xtests = tst-strcoll-overflow
 
-test-xfail-test-memcpy = yes
-test-xfail-test-memset = yes
-
 # This test needs libdl.
 ifeq (yes,$(build-shared))
 tests += test-strerror-errno
