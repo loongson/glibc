@@ -36,8 +36,12 @@
 #define FREG_L fld.d
 #define FREG_S fst.d
 
-/* Declare leaf routine.  */
-#define LEAF(symbol, aln)		\
+/*  Declare leaf routine.
+    The usage of macro LEAF/ENTRY is as follows:
+    1. LEAF(fcn) -- the align value of fcn is .align 3 (default value)
+    2. LEAF(fcn, 6) -- the align value of fcn is .align 6
+*/
+#define LEAF_IMPL(symbol, aln, ...)	\
 	.text;				\
 	.globl symbol;			\
 	.align aln;			\
@@ -45,7 +49,9 @@
 symbol: \
 	cfi_startproc;
 
-#define ENTRY(symbol, aln) LEAF (symbol, aln)
+
+#define LEAF(...) LEAF_IMPL(__VA_ARGS__, 3)
+#define ENTRY(...) LEAF(__VA_ARGS__)
 
 #define	LEAF_NO_ALIGN(symbol)		\
 	.text;				\
