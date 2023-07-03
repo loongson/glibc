@@ -70,6 +70,12 @@ __libc_ifunc_impl_list (const char *name, struct libc_ifunc_impl *array,
 	      IFUNC_IMPL_ADD (array, i, memcmp, 1, __memcmp_aligned)
 	      )
 
+  IFUNC_IMPL (i, name, __memcmpeq,
+	      IFUNC_IMPL_ADD (array, i, __memcmpeq, SUPPORT_LASX, __memcmp_lasx)
+	      IFUNC_IMPL_ADD (array, i, __memcmpeq, SUPPORT_LSX, __memcmp_lsx)
+	      IFUNC_IMPL_ADD (array, i, __memcmpeq, 1, __memcmp_aligned)
+	      )
+
   IFUNC_IMPL (i, name, rawmemchr,
 	      IFUNC_IMPL_ADD (array, i, rawmemchr, SUPPORT_LASX, __rawmemchr_lasx)
 	      IFUNC_IMPL_ADD (array, i, rawmemchr, SUPPORT_LSX, __rawmemchr_lsx)
