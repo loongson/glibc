@@ -284,9 +284,5 @@ END(MEMCMP_NAME)
 libc_hidden_builtin_def (MEMCMP_NAME)
 #endif
 
-# undef bcmp
-weak_alias (MEMCMP_NAME, bcmp)
 # undef __memcmpeq
 strong_alias (MEMCMP_NAME, __memcmpeq)
-
-

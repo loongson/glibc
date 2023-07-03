@@ -105,7 +105,3 @@ END(STRRCHR_NAME)
 #ifdef _LIBC
 libc_hidden_builtin_def(STRRCHR_NAME)
 #endif
-
-#undef rindex
-weak_alias(STRRCHR_NAME, rindex)
-

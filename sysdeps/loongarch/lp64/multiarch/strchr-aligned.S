@@ -91,5 +91,3 @@ L(_mc8_a):
 
 	jr		ra
 END(STRCHR_NAME)
-
-weak_alias (STRCHR_NAME, index)

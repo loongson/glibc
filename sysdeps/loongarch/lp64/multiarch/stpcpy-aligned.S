@@ -176,6 +176,5 @@ L(un_out):
 END(STPCPY_NAME)
 
 #ifdef _LIBC
-weak_alias (STPCPY_NAME, stpcpy)
 libc_hidden_builtin_def (STPCPY_NAME)
 #endif

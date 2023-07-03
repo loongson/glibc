@@ -109,7 +109,6 @@ L(loop_8bit):
 END(RAWMEMCHR_NAME)
 
 #ifdef _LIBC
-weak_alias (__rawmemchr, rawmemchr)
 libc_hidden_builtin_def (__rawmemchr)
 #endif
 

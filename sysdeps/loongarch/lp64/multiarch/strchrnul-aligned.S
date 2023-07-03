@@ -91,6 +91,5 @@ L(_mc8_a):
 END(STRCHRNUL_NAME)
 
 #ifdef _LIBC
-weak_alias(STRCHRNUL_NAME, strchrnul)
 libc_hidden_builtin_def (STRCHRNUL_NAME)
 #endif
